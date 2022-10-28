@@ -281,13 +281,19 @@ include "../include/head.php";
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <form method="POST" id="formulario" enctype="multipart/form-data"> 
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="file" name="file">
-                        <label class="custom-file-label">Cambiar foto de perfil</label>
+                  <form method="POST" id="formFoto" enctype="multipart/form-data"> 
+                    <div>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="foto" name="foto">
+                          <label class="custom-file-label">Cambiar foto de perfil</label>
+                      </div>
                     </div>
-                    <div id="resultFoto"></div>
+                    <br>
+                    <div class="input-group mb-6">
+                      <button type="submit" id="cambiarFoto" class="btn btn-primary ml-auto">Cambiar</button>
+                    </div>
                   </form>
+                  <div id="resultFoto"></div>
                 </div>
               <!-- /.card-body -->
             </div>
@@ -364,22 +370,26 @@ include "../include/head.php";
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
                             <div class="card-body">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Actualizar hoja de vida</label>
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <button type="submit" class="btn btn-success">
+                                <form method="POST" id="formHojaDeVida" enctype="multipart/form-data">
+                                  <div class="input-group mb-3">
+                                      <div class="custom-file">
+                                          <input type="file" class="custom-file-input" id="hojaDeVida" required>
+                                          <label class="custom-file-label">Actualizar hoja de vida</label>
+                                      </div>
+                                  </div>
+                                  <div class="input-group mb-3">
+                                    <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
+                                  </div>
+                                </form>
+                                <div class="input-group mt-3">
+                                    <button type="submit" id="" class="btn btn-success ml-auto">
                                         <span>Descargar hoja de vida</span>
                                     </button>
                                 </div>
+                                <div class="mt-3 col-5 ml-auto" id="resultHojaDeVida"></div>
                             </div>
                                 
-                            <div class="input-group mb-3">
-                              <button type="submit" class="btn btn-primary ml-auto">Guardar cambios</button>
-                            </div>
+                            
 
                             </div><!-- /.card -->
                           </div>
@@ -464,23 +474,75 @@ include "../include/head.php";
         }
       };
 
-      $(function(){
-      $("input[name='file']").on("change", function(){
-        var formData = new FormData($("#formulario")[0]);
+      // $(function(){
+      // $("input[name='file']").on("change", function(){
+      //   var formData = new FormData($("#formulario")[0]);
+      //   var ruta = "../action/actualizarFoto.php";
+      //   $.ajax({
+      //       url: ruta,
+      //       type: "POST",
+      //       data: formData,
+      //       contentType: false,
+      //       processData: false,
+      //       success: function(datos)
+      //       {
+      //           $("#resultFoto").html(datos);
+      //       }
+      //   });
+      // });
+      // });
+
+      $("#formFoto").submit(function(event) {
+        $('#cambiarFoto').attr("disabled", true);
+        var archivo = $("#foto").prop('files')[0];
+        var formData = new FormData();
+        formData.append("foto",archivo);
         var ruta = "../action/actualizarFoto.php";
+
         $.ajax({
-            url: ruta,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(datos)
-            {
+          type: "POST",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          url: ruta,
+            beforeSend: function(objeto) {
+                document.getElementById('formFoto').reset();
+                $("#resultFoto").html("Mensaje: Cargando...");
+            },
+            success: function(datos) {
                 $("#resultFoto").html(datos);
+                $('#cambiarFoto').attr("disabled", false);
             }
         });
+        event.preventDefault();
       });
-      });
+
+      $("#formHojaDeVida").submit(function(event) {
+        $('#enviarHojaDeVida').attr("disabled", true);
+        var archivo = $("#hojaDeVida").prop('files')[0];
+        var formData = new FormData();
+        formData.append("hojaDeVida",archivo);
+        var ruta = "../action/guardarHojaDeVida.php";
+
+        $.ajax({
+          type: "POST",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          url: ruta,
+            beforeSend: function(objeto) {
+                document.getElementById('formHojaDeVida').reset();
+                $("#resultHojaDeVida").html("Mensaje: Cargando...");
+            },
+            success: function(datos) {
+                $("#resultHojaDeVida").html(datos);
+                $('#enviarHojaDeVida').attr("disabled", false);
+            }
+        });
+        event.preventDefault();
+    });
   </script>
 </body>
 

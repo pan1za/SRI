@@ -212,17 +212,27 @@ include "../include/head.php";
 
         <!-- Default box -->
         <div class="card">
-          <form method="POST" id="formIncapacidad" enctype="multipart/form-data">
+          <form id="formIncapacidad" method="POST" enctype="multipart/form-data">
             <div class="card-body">
               <div class="col-7">
                 <div class="form-group col-7">
-                  <label for="tipoIncapacidad">Tipo de incapacidad</label>
-                  <select name="tipoIncapacidad" id="tipoIncapacidad" class="form-control" required>
-                    <option value="" selected disabled focus>Seleccione una opción</option>
-                    <option value="Incapacidad por enfermedad laboral">Incapacidad por enfermedad laboral</option>
-                    <option value="Incapacidad por enfermedad general">Incapacidad por enfermedad general</option>
-                    <option value="Incapacidad por maternidad">Incapacidad por maternidad</option>
+                  <label>Tipo de incapacidad</label>
+                  <select class="form-control" name="tipoIncapacidad" id="tipoIncapacidad" required>
+                    <option value="" selected disabled autofocus>Seleccione una opción</option>
+                    <option value='Incapacidad por enfermedad laboral'>Incapacidad por enfermedad laboral</option>
+                    <option value='Incapacidad por enfermedad general'>Incapacidad por enfermedad general</option>
+                    <option value='Incapacidad por maternidad'>Incapacidad por maternidad</option>
                   </select>
+                </div>
+                <br>
+                <div class="form-group col-7">
+                  <label>Día de la incapacidad:</label>
+                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                    <input type="date" class="form-control datetimepicker-input" data-target="#reservationdate" required/>
+                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                      <!-- <div class="input-group-text"><i class="f fa-calendarr"></i></div> -->
+                    </div>
+                  </div>
                 </div>
                 <br>
                 <div class="form-group col-7">
@@ -236,11 +246,12 @@ include "../include/head.php";
                 </div>
                 <br>
                 <div class="col-7">
-                  <button type="submit" id="enviarEvidencia" class="btn btn-primary">Enviar</button>
+                  <button type="submit" id="enviarIncapacidad" class="btn btn-primary">Enviar</button>
                   <button type="submit" id="btn" class="btn btn-danger">Cancelar</button>
                 </div>
+                <br>
+                <div class="form-group col-7" id="result"></div>
               </div>
-              <div id="result"></div>
             </div>
           </form>
         </div>
@@ -278,29 +289,38 @@ include "../include/head.php";
   <script>
     $(function() {
       bsCustomFileInput.init();
+
+      //Date picker
+      $('#reservationdate').datetimepicker({
+        format: 'L'
+      })
     });
-    
-    $(document).ready(function(){
-      $("#enviarEvidencia").on("click", function(){
+
+    $("#formIncapacidad").submit(function(event) {
+        $('#enviarIncapacidad').attr("disabled", true);
         var archivo = $("#file").prop('files')[0];
-        var formData = new FormData;
+        var formData = new FormData();
         formData.append("file",archivo);
+        formData.append("tipoIncapacidad", $("#tipoIncapacidad").val());
         var ruta = "../action/guardarIncapacidad.php";
 
         $.ajax({
-          type: 'POST',
+          type: "POST",
           cache: false,
           contentType: false,
           processData: false,
           data: formData,
-          url: ruta
-        }).done(function(data){
-            alert(data);
-        }).fail(function(){
-          alert("El archivo no se pudo cargar");
+          url: ruta,
+            beforeSend: function(objeto) {
+                document.getElementById('formIncapacidad').reset();
+                $("#result").html("Mensaje: Cargando...");
+            },
+            success: function(datos) {
+                $("#result").html(datos);
+                $('#enviarIncapacidad').attr("disabled", false);
+            }
         });
-      });
-      
+        event.preventDefault();
     });
 
   </script>

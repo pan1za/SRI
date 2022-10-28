@@ -6,15 +6,13 @@
     
     include "../config/conexion.php";
 
-    $tipoIncapacidad = $_POST['tipoIncapacidad'];
     $idUsuario = $_SESSION['user_id'];
 
-    if (isset($_FILES['file']) != ""){
-        
-        $nombre = $_FILES["file"]["name"];
-        $tipo = $_FILES["file"]["type"];
-        $ruta_provisional = $_FILES["file"]["tmp_name"];
-        $size = $_FILES["file"]["size"];
+    if (isset($_FILES['hojaDeVida']) != ""){
+        $nombre = $_FILES["hojaDeVida"]["name"];
+        $tipo = $_FILES["hojaDeVida"]["type"];
+        $ruta_provisional = $_FILES["hojaDeVida"]["tmp_name"];
+        $size = $_FILES["hojaDeVida"]["size"];
         $carpeta = "../dist/docs/";
 
         if ($tipo !== 'application/pdf')
@@ -30,8 +28,7 @@
             $src = $carpeta.$nombre;
            @move_uploaded_file($ruta_provisional, $src);
 
-           $query = "INSERT INTO `incapacidad`(`tipoIncapacidad`, `evidencia`, `idUsuario`) 
-                    VALUES ('$tipoIncapacidad', '$nombre', '$idUsuario')";
+           $query = "INSERT INTO `hoja_de_vida`(`hojaDeVida`, `idUsuario`) VALUES ('$nombre', '$idUsuario')";
            $query_new_insert = mysqli_query($conn,$query);
 
             if($query_new_insert){
