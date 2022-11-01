@@ -9,7 +9,7 @@ include "../include/head.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -164,9 +164,9 @@ include "../include/head.php";
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="recargo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Recargo nocturno</p>
+                  <p>Recargo</p>
                 </a>
               </li>
             </ul>
@@ -195,7 +195,7 @@ include "../include/head.php";
               <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Recargo nocturno</p>
+                  <p>Recargo</p>
                 </a>
               </li>
             </ul>      
@@ -235,13 +235,12 @@ include "../include/head.php";
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <!-- <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
-  </footer> -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Versión</b> 1.0.0
+      </div>
+      <strong>Sistema de Reportes de Innova - <a target="blank" href="http://innovagestion.com.co/">INNOVA Gestión &copy </a></strong>
+    </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

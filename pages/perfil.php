@@ -5,10 +5,11 @@ include "../include/head.php";
 // if($usertype != "user"){
 //     header("location: homeadmin.php");
 // }
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -149,7 +150,7 @@ include "../include/head.php";
                 <li class="nav-item">
                   <a href="recargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo nocturno</p>
+                    <p>Recargo</p>
                   </a>
                 </li>
               </ul>
@@ -176,9 +177,9 @@ include "../include/head.php";
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../pages/forms/editors.html" class="nav-link">
+                  <a href="recargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo nocturno</p>
+                    <p>Recargo</p>
                   </a>
                 </li>
               </ul>
@@ -210,69 +211,45 @@ include "../include/head.php";
 
       <!-- Main content -->
       <section class="content">
-      <div class="container-fluid">
-        <div class="row">
+        <div class="container-fluid">
+          <div class="row">
             <div class="col-md-3">
-
-                <!-- Profile Image -->
-                <div class="card card-primary card-outline">
-                    <div class="card-body box-profile">
-                        <div class="text-center">
-                          <img class="profile-user-img img-fluid img-circle" src="../dist/img/perfiles/<?php echo $foto ?>" 
-                          class="img-circle elevation-2" alt="User profile picture">
-                        </div>
-                        
-                        <h3 class="profile-username text-center"><?php echo $nombres . ' ' . $apellidos ?></h3>
-
-                        <?php
-                          if($usertype != "admin"){?>
-                            <p class="text-muted text-center"><?php echo $cargo . ' <br> ' . $nombreRestaurante ?> sede <?php echo $nombreSede ?></p>
-                          <?php 
-                          }
-                          elseif($usertype != "user"){?>
-                            <p class="text-muted text-center"><?php echo $cargo?></p>
-                          <?php
-                          }
-                        ?>
+                <div class="card card-primary card--outline">
+                  <div class="card-header">
+                      <h3 class="card-title">Mi perfil</h3>
+                  </div>
+                  <div class="card-body box-profile">
+                    <div class="text-center">
+                      <img class="profile-user-img img-fluid img-circle" src="../dist/img/perfiles/<?php echo $foto ?>" class="img-circle elevation-2" alt="User profile picture">
                     </div>
-                <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-
-            <!-- About Me Box -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Sobre mí</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <strong><i class="fas fa-book mr-1"></i> Estudios</strong>
-
-                    <p class="text-muted"><?php echo $estudios ?></p>
-
-                    <hr>
-
-                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
-
-                    <p class="text-muted"><?php echo $ubicacion ?></p>
-
-                    <hr>
-
-                    <strong><i class="fas fa-pencil-alt mr-1"></i> Habilidades</strong>
-
-                    <p class="text-muted">
-                    <span class="tag tag-danger"><?php echo $habilidades ?></span>
-                    </p>
-
-                    <hr>
-
-                    <strong><i class="far fa-file-alt mr-1"></i> Hoja de vida</strong>
-
-                    <p class="text-muted"><a href="">holadevida.pdf</a></p>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+                    <h3 class="profile-username text-center"><?php echo $nombres . ' ' . $apellidos ?></h3>
+                    <?php
+                      if($usertype != "admin"){?>
+                        <p class="text-muted text-center"><?php echo $cargo . ' <br> ' . $nombreRestaurante ?> sede <?php echo $nombreSede ?></p>
+                        <?php 
+                      }
+                      elseif($usertype != "user"){?>
+                        <p class="text-muted text-center"><?php echo $cargo?></p>
+                        <?php
+                      }
+                    ?>
+                    <!-- <div class="card-body">
+                      <form method="POST" id="formFoto" enctype="multipart/form-data"> 
+                        <div>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="foto" name="foto">
+                            <label class="custom-file-label">Nueva foto de perfil</label>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="input-group mb-6">
+                          <button type="submit" id="cambiarFoto" class="btn btn-primary ml-auto">Cambiar</button>
+                        </div>
+                      </form>
+                      <div id="resultFoto"></div>
+                    </div> -->
+                  </div><!-- /.card-body -->
+                </div><!-- /.card -->
 
             <!-- Cambiar foto de perfil -->
             <div class="card card-primary">
@@ -285,7 +262,7 @@ include "../include/head.php";
                     <div>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="foto" name="foto">
-                          <label class="custom-file-label">Cambiar foto de perfil</label>
+                          <label class="custom-file-label">Nueva foto de perfil</label>
                       </div>
                     </div>
                     <br>
@@ -298,106 +275,219 @@ include "../include/head.php";
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+
+            <!-- About Me Box -->
+            <!-- <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Sobre mí</h3>
+              </div>
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> Estudios</strong>
+
+                <p class="text-muted"><?php echo $estudios ?></p>
+
+                <hr>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
+
+                <p class="text-muted"><?php echo $ubicacion ?></p>
+
+                <hr>
+
+                <strong><i class="fas fa-pencil-alt mr-1"></i> Habilidades</strong>
+
+                <p class="text-muted">
+                <span class="tag tag-danger"><?php echo $habilidades ?></span>
+                </p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Hoja de vida</strong>
+
+                <p class="text-muted"><a href="">holadevida.pdf</a></p>
+              </div>
+            </div> -->
+
           </div>
           <!-- /.col -->
             <div class="col-md-9">
-                <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Información general de la cuenta</h3>
+                <div class="card card-primaryy">
+                <div class="card-header p-2">
+                    <!-- <h3 class="card-title">Datos personales</h3> -->
+                  <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#datosPersonales" data-toggle="tab">Datos Personales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#datosLaborales" data-toggle="tab">Datos Laborales</a></li>
+                  </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="activity">
-                            <div class="card-body">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" value="<?php echo $nombres ?>" disabled>
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-user"></span>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" value="<?php echo $apellidos ?>" disabled>
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-user"></span>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <input type="email" class="form-control" value="<?php echo $email ?>" disabled>
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-envelope"></span>
-                                    </div>
-                                </div>
-                                </div>
-                                    
-                                <div class="input-group mb-3">
-                                    <input type="password" id="password1" class="form-control" value="<?php echo $password ?>">
-                                <div class="input-group-append">
-                                    <button id="show_password1" class="btn btn-primary" type="button" onclick="mostrarPassword1()"> <span class="fa fa-eye-slash icon"></span></button>
-                                </div>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <input type="password" id="password2" class="form-control" value="<?php echo $password ?>">
-                                <div class="input-group-append">
-                                    <button id="show_password2" class="btn btn-primary" type="button" onclick="mostrarPassword2()"> <span class="fa fa-eye-slash icon"></span></button>
-                                </div>
-                                </div>
-                            
-                                <div class="input-group mb-3">
-                                    <button type="submit" class="btn btn-primary ml-auto">Actualizar datos</button>
-                                </div>
-                                
-                            </div><!-- /.card -->
+                  <div class="tab-content">
+                    <div class="active tab-pane" id="datosPersonales">
+                      <div class="card-body">
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Nombres:</label>
+                          <input type="text" class="form-control" value="<?php echo $nombres ?>" disabled>
+                           <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                              </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /.tab-content -->
+                        <br>
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Apellidos:</label>
+                          <input type="text" class="form-control" value="<?php echo $apellidos ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Correo:</label>
+                          <input type="email" class="form-control" value="<?php echo $email ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Password:</label>
+                          <input type="password" id="password1" class="form-control" value="<?php echo $password ?>">
+                          <div class="input-group-append">
+                            <button id="show_password1" class="btn btn-primary" type="button" onclick="mostrarPassword1()"> <span class="fa fa-eye-slash icon"></span></button>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Username:</label>
+                          <input type="text" id="" class="form-control" value="<?php echo $username ?>">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="input-group mb-3">
+                          <input type="password" id="password2" class="form-control" value="<?php echo $password ?>">
+                          <div class="input-group-append">
+                            <button id="show_password2" class="btn btn-primary" type="button" onclick="mostrarPassword2()"> <span class="fa fa-eye-slash icon"></span></button>
+                          </div>
+                        </div> -->
+                        <!-- <div class="input-group mb-3">
+                          <button type="submit" class="btn btn-primary ml-auto">Actualizar datos</button>
+                        </div> -->
+                                
+                      </div><!-- /.card -->
+                    </div><!-- datos personales -->
+
+                    <div class="tab-pane" id="datosLaborales">
+                      <div class="card-body">
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Cargo:</label>
+                          <input type="text" class="form-control" value="<?php echo $cargo ?>" disabled>
+                           <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">I.Contrato:</label>
+                          <input type="text" class="form-control" value="<?php echo $inicioContrato ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">T.Contrato:</label>
+                          <input type="email" class="form-control" value="<?php echo $tipoContrato ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Sueldo:</label>
+                          <input type="email" class="form-control" value="<?php echo $sueldo ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Pensión:</label>
+                          <input type="email" class="form-control" value="<?php echo $pension ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">Salud:</label>
+                          <input type="email" class="form-control" value="<?php echo $salud ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <label class="col-sm-1 col-form-label">ARL:</label>
+                          <input type="email" class="form-control" value="<?php echo $arl ?>" disabled>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /.card -->
+                    </div> <!-- datos laborales -->
+                  </div><!-- /.tab-content -->
                 </div><!-- /.card-body -->
-                </div>
-                <!-- /.card primary-->
+                </div><!-- /.card primary-->
                 
                 <div class="card card-primary">
-                <div class="card-header">
+                  <div class="card-header">
                     <h3 class="card-title">Hoja de vida</h3>
-                </div><!-- /.card-header -->
-                <div class="card-body">
+                  </div><!-- /.card-header -->
+                  <div class="card-body">
                     <div class="tab-content">
-                        <div class="active tab-pane" id="activity">
-                            <div class="card-body">
-                                <form method="POST" id="formHojaDeVida" enctype="multipart/form-data">
-                                  <div class="input-group mb-3">
-                                      <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="hojaDeVida" required>
-                                          <label class="custom-file-label">Actualizar hoja de vida</label>
-                                      </div>
-                                  </div>
-                                  <div class="input-group mb-3">
-                                    <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
-                                  </div>
-                                </form>
-                                <div class="input-group mt-3">
-                                    <button type="submit" id="" class="btn btn-success ml-auto">
-                                        <span>Descargar hoja de vida</span>
-                                    </button>
-                                </div>
-                                <div class="mt-3 col-5 ml-auto" id="resultHojaDeVida"></div>
+                      <div class="card-body">
+                        <form method="POST" id="formHojaDeVida" enctype="multipart/form-data">
+                          <div class="input-group mb-3">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="hojaDeVida" required>
+                              <label class="custom-file-label">Actualizar hoja de vida</label>
                             </div>
-                                
-                            
-
-                            </div><!-- /.card -->
                           </div>
-                    </div>
-                    <!-- /.tab-content -->
-                </div><!-- /.card-body -->
-                </div>
-                <!-- /.card secundary-->
+                          <div class="input-group mb-3">
+                            <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
+                          </div>
+                        </form>
+                        <div class="input-group mt-3">
+                          <button type="submit" id="" class="btn btn-success ml-auto">
+                            <span>Descargar hoja de vida</span>
+                          </button>
+                        </div>
+                        <div class="mt-3 col-5 ml-auto" id="resultHojaDeVida"></div>
+                      </div><!-- /.card -->
+                    </div><!-- /.tab-content -->
+                  </div><!-- /.card-body -->
+                </div><!-- /.card primary secundary-->
           </div>
           <!-- /.col -->
         </div>
@@ -408,12 +498,12 @@ include "../include/head.php";
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer> -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Versión</b> 1.0.0
+      </div>
+      <strong>Sistema de Reportes de Innova - <a target="blank" href="http://innovagestion.com.co/">INNOVA Gestión &copy </a></strong>
+    </footer>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

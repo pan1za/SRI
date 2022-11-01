@@ -7,15 +7,22 @@
     include "../config/conexion.php";
 
     $tipoIncapacidad = $_POST['tipoIncapacidad'];
+    $diaInicio = $_POST['diaInicio'];
+    $diaFinal = $_POST['diaFinal'];
+    $observaciones = $_POST['observaciones'];
     $idUsuario = $_SESSION['user_id'];
 
-    if (isset($_FILES['file']) != ""){
+    if ($observaciones == ""){
+        $observaciones = "Sin observaciones";
+    }
+
+    if (isset($_FILES['fileEvidencia']) != ""){
         
-        $nombre = $_FILES["file"]["name"];
-        $tipo = $_FILES["file"]["type"];
-        $ruta_provisional = $_FILES["file"]["tmp_name"];
-        $size = $_FILES["file"]["size"];
-        $carpeta = "../dist/docs/";
+        $nombre = $_FILES["fileEvidencia"]["name"];
+        $tipo = $_FILES["fileEvidencia"]["type"];
+        $ruta_provisional = $_FILES["fileEvidencia"]["tmp_name"];
+        $size = $_FILES["fileEvidencia"]["size"];
+        $carpeta = "../dist/docs/incapacidades/";
 
         if ($tipo !== 'application/pdf')
         {
@@ -30,8 +37,8 @@
             $src = $carpeta.$nombre;
            @move_uploaded_file($ruta_provisional, $src);
 
-           $query = "INSERT INTO `incapacidad`(`tipoIncapacidad`, `evidencia`, `idUsuario`) 
-                    VALUES ('$tipoIncapacidad', '$nombre', '$idUsuario')";
+           $query = "INSERT INTO `incapacidad`(`tipoIncapacidad`, `evidencia`, `diaInicio`, `diaFinal`, `observaciones`, `idUsuario`) 
+                    VALUES ('$tipoIncapacidad', '$nombre', '$diaInicio', '$diaFinal', '$observaciones', '$idUsuario')";
            $query_new_insert = mysqli_query($conn,$query);
 
             if($query_new_insert){
@@ -40,6 +47,7 @@
                 $errors []= "Algo ha salido mal, intenta nuevamente. ".mysqli_error($conn);
            }
         }
+
         if (isset($errors)){
             ?>
             <div class="alert alert-danger" role="alert">

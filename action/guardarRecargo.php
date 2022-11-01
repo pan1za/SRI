@@ -2,11 +2,11 @@
     session_start();
     include "../config/conexion.php";
 
-    $tipoHoraExtra = $_POST["tipoHoraExtra"];
+    $tipoRecargo = $_POST["tipoRecargo"];
     $jornada = $_POST["jornada"];
-    $fecha = $_POST["fechaHoraExtra"];
-    $inicio = $_POST["inicioHoraExtra"];
-    $fin = $_POST["finalHoraExtra"];
+    $fecha = $_POST["fechaRecargo"];
+    $inicio = $_POST["inicioRecargo"];
+    $fin = $_POST["finalRecargo"];
     $observaciones = $_POST["observaciones"];
     $idUsuario = $_SESSION["user_id"];
 
@@ -14,12 +14,12 @@
         $observaciones = "Sin observaciones";
     }
 
-    $query = "INSERT INTO `hora_extra`(`tipoHoraExtra`, `jornada`, `fecha`, `inicio`, `fin`, `observaciones`, `idUsuario`) 
-            VALUES ('$tipoHoraExtra', '$jornada', '$fecha', '$inicio', '$fin', '$observaciones', '$idUsuario')";
+    $query = "INSERT INTO `recargo`(`tipoRecargo`, `jornada`, `fecha`, `inicio`, `fin`, `observaciones`, `idUsuario`) 
+            VALUES ('$tipoRecargo', '$jornada', '$fecha', '$inicio', '$fin', '$observaciones', '$idUsuario')";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        $messages[] = "Hora extra registrada";
+        $messages[] = "Recargo registrado";
     } else {
         $errors[] = "Algo ha salido mal, intenta nuevamente." . mysqli_error($conn);
     }

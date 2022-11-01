@@ -9,7 +9,7 @@ include "../include/head.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -148,7 +148,7 @@ include "../include/head.php";
                 <li class="nav-item">
                   <a href="recargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo nocturno</p>
+                    <p>Recargo</p>
                   </a>
                 </li>
               </ul>
@@ -177,7 +177,7 @@ include "../include/head.php";
                 <li class="nav-item">
                   <a href="../../pages/forms/editors.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo nocturno</p>
+                    <p>Recargo</p>
                   </a>
                 </li>
               </ul>
@@ -195,12 +195,12 @@ include "../include/head.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Reportar incapacidad</h1>
+              <h1>Incapacidad</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item active">Reportar incapacidad</li>
+                <li class="breadcrumb-item active">Incapacidad</li>
               </ol>
             </div>
           </div>
@@ -211,49 +211,90 @@ include "../include/head.php";
       <section class="content">
 
         <!-- Default box -->
-        <div class="card">
-          <form id="formIncapacidad" method="POST" enctype="multipart/form-data">
-            <div class="card-body">
-              <div class="col-7">
-                <div class="form-group col-7">
-                  <label>Tipo de incapacidad</label>
-                  <select class="form-control" name="tipoIncapacidad" id="tipoIncapacidad" required>
-                    <option value="" selected disabled autofocus>Seleccione una opción</option>
-                    <option value='Incapacidad por enfermedad laboral'>Incapacidad por enfermedad laboral</option>
-                    <option value='Incapacidad por enfermedad general'>Incapacidad por enfermedad general</option>
-                    <option value='Incapacidad por maternidad'>Incapacidad por maternidad</option>
-                  </select>
-                </div>
-                <br>
-                <div class="form-group col-7">
-                  <label>Día de la incapacidad:</label>
-                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="date" class="form-control datetimepicker-input" data-target="#reservationdate" required/>
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                      <!-- <div class="input-group-text"><i class="f fa-calendarr"></i></div> -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Reportar Incapacidad</h3>
+          </div>
+          <div class="card-body">
+            <form id="formIncapacidad" method="POST" enctype="multipart/form-data">
+              <div class="card card-body w-50 offset-3">
+                    <div class="form-group">
+                      <label>Tipo de incapacidad <b>*</b></label>
+                      <select class="form-control" name="tipoIncapacidad" id="tipoIncapacidad" required>
+                        <option value="" selected disabled autofocus>Seleccione una opción</option>
+                        <option value='Incapacidad por enfermedad laboral'>Incapacidad por enfermedad laboral</option>
+                        <option value='Incapacidad por enfermedad general'>Incapacidad por enfermedad general</option>
+                        <option value='Incapacidad por maternidad'>Incapacidad por maternidad</option>
+                      </select>
                     </div>
-                  </div>
-                </div>
-                <br>
-                <div class="form-group col-7">
-                  <label for="evidencia">Evidencia</label>
-                  <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="file" required>
-                      <label class="custom-file-label" for="evidencia">Seleccionar archivo</label>
+
+                    <div class="form-group">
+                      <label>Día inicio incapacidad <b>*</b></label>
+                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="date" name="diaInicio" id="diaInicio" class="form-control datetimepicker-input" data-target="#reservationdate" required/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <!-- <div class="input-group-text"><i class="f fa-calendarr"></i></div> -->
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <br>
-                <div class="col-7">
-                  <button type="submit" id="enviarIncapacidad" class="btn btn-primary">Enviar</button>
-                  <button type="submit" id="btn" class="btn btn-danger">Cancelar</button>
-                </div>
-                <br>
-                <div class="form-group col-7" id="result"></div>
+
+                    <div class="form-group">
+                      <label>Día final incapacidad <b>*</b></label>
+                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="date" name="diaFinal" id="diaFinal" class="form-control datetimepicker-input" data-target="#reservationdate" required/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <!-- <div class="input-group-text"><i class="f fa-calendarr"></i></div> -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Evidencia <b>*</b></label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="fileEvidencia" required>
+                          <label class="custom-file-label">Seleccionar archivo</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Historia clínica</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="fileHistClinica" disabled required>
+                          <label class="custom-file-label" for="evidencia">Seleccionar archivo</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Cédula</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="fileCedula">
+                          <label class="custom-file-label" for="evidencia">Seleccionar archivo</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Observaciones</label>
+                        <div class="">
+                          <textarea class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="Escriba algo si es necesario"></textarea>
+                        </div>
+                    </div>
+                    <div class="ml-auto">
+                      <p>Obligatorio (<b>*</b>)</p>
+                    </div>
+                    <div class="ml-auto">
+                      <button type="submit" id="enviarIncapacidad" class="btn btn-primary">Enviar</button>
+                      <button type="submit" id="btn" class="btn btn-danger">Cancelar</button>
+                    </div>
+                    <div class="ml-auto" id="result"></div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
 
       </section>
@@ -261,12 +302,12 @@ include "../include/head.php";
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer> -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Versión</b> 1.0.0
+      </div>
+      <strong>Sistema de Reportes de Innova - <a target="blank" href="http://innovagestion.com.co/">INNOVA Gestión &copy </a></strong>
+    </footer>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -298,10 +339,13 @@ include "../include/head.php";
 
     $("#formIncapacidad").submit(function(event) {
         $('#enviarIncapacidad').attr("disabled", true);
-        var archivo = $("#file").prop('files')[0];
+        var archivo = $("#fileEvidencia").prop('files')[0];
         var formData = new FormData();
-        formData.append("file",archivo);
+        formData.append("fileEvidencia",archivo);
         formData.append("tipoIncapacidad", $("#tipoIncapacidad").val());
+        formData.append("diaInicio", $("#diaInicio").val());
+        formData.append("diaFinal", $("#diaFinal").val());
+        formData.append("observaciones", $("#observaciones").val());
         var ruta = "../action/guardarIncapacidad.php";
 
         $.ajax({
@@ -322,6 +366,8 @@ include "../include/head.php";
         });
         event.preventDefault();
     });
+
+    $("#fileHistClinica").prop('disabled', false);
 
   </script>
 </body>

@@ -13,7 +13,7 @@
         $tipo = $_FILES["hojaDeVida"]["type"];
         $ruta_provisional = $_FILES["hojaDeVida"]["tmp_name"];
         $size = $_FILES["hojaDeVida"]["size"];
-        $carpeta = "../dist/docs/";
+        $carpeta = "../dist/docs/hojasDeVida/";
 
         if ($tipo !== 'application/pdf')
         {
@@ -28,7 +28,7 @@
             $src = $carpeta.$nombre;
            @move_uploaded_file($ruta_provisional, $src);
 
-           $query = "INSERT INTO `hoja_de_vida`(`hojaDeVida`, `idUsuario`) VALUES ('$nombre', '$idUsuario')";
+           $query = "INSERT INTO `hoja_de_vida`(`nombreArchivo`, `idUsuario`) VALUES ('$nombre', '$idUsuario')";
            $query_new_insert = mysqli_query($conn,$query);
 
             if($query_new_insert){

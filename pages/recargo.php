@@ -14,7 +14,7 @@ include "../include/head.php";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistemas de Reportes | Horas extras</title>
+  <title>Sistemas de Reportes | Recargo</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -37,7 +37,7 @@ include "../include/head.php";
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="../index.html" class="nav-link">Inicio</a>
+          <a href="home.php" class="nav-link">Inicio</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="../pages/examples/contact-us.html" class="nav-link">Contáctenos</a>
@@ -81,7 +81,7 @@ include "../include/head.php";
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="../index.php" class="brand-link">
+      <a href="home.php" class="brand-link">
         <img src="../dist/img/logo.png" alt="SRI Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Sistema de Reportes</span>
       </a>
@@ -142,13 +142,13 @@ include "../include/head.php";
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="horasExtras.php" class="nav-link active">
+                  <a href="horasExtras.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Horas extras</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="recargo.php" class="nav-link">
+                  <a href="recargo.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recargo</p>
                   </a>
@@ -177,7 +177,7 @@ include "../include/head.php";
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../pages/forms/editors.html" class="nav-link">
+                  <a href="recargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recargo</p>
                   </a>
@@ -197,12 +197,12 @@ include "../include/head.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Horas extras</h1>
+              <h1>Recargo</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item active">Horas extras</li>
+                <li class="breadcrumb-item active">Recargo</li>
               </ol>
             </div>
           </div>
@@ -215,18 +215,18 @@ include "../include/head.php";
         <!-- Default box -->
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Reportar horas extras</h3>
+            <h3 class="card-title">Reportar recargo</h3>
           </div>
           <div class="card-body">
-            <form id="formHorasExtras" method="POST">
+            <form id="formRecargo" method="POST">
               <div class="card card-body w-50 offset-3">
                   <div class="form-group">
-                    <label>Horas extras a reconocer <b>*</b></label>
-                    <select name="tipoHoraExtra" id="tipoHoraExtra" class="form-control" required>
-                      <option value="" selected disabled autofocus>Seleccione una opción</option>
-                      <option value="Hora extra día ordinario">Horas extras días ordinarios</option>
-                      <option value="Hora extra día domingo">Horas extras días domingos</option>
-                      <option value="Hora extra día festivo">Horas extras días festivos</option>
+                    <label>Recargo a reconocer <b>*</b></label>
+                    <select name="tipoRecargo" id="tipoRecargo" class="form-control" required>
+                      <option value="" selected disabled autofocus>Seleccione una opción</option>,  y 
+                      <option value="Recargo nocturno">Recargo nocturno</option>
+                      <option value="Recargo nocturno dominical/festivo ordinario">Recargo nocturno dominical/festivo ordinario</option>
+                      <option value="Recargo nocturno dominical/festivo">Recargo nocturno dominical/festivo</option>
                     </select>
                   </div>
 
@@ -234,7 +234,7 @@ include "../include/head.php";
                     <label for="jornada">Jornada <b>*</b></label>
                     <select name="jornada" id="jornada" class="form-control" required>
                       <option value="" selected disabled focus>Seleccione una opción</option>
-                      <option value="Diurna">Diurna</option>
+                      <!-- <option value="Diurna">Diurna</option> -->
                       <option value="Nocturna">Nocturna</option>
                     </select>
                   </div>
@@ -242,8 +242,8 @@ include "../include/head.php";
                   <div class="form-group">
                     <label>Fecha: <b>*</b></label>
                     <div class="input-group date" data-target-input="nearest">
-                      <input type="date" name="fechaHoraExtra" class="form-control datetimepicker-input" data-target="#fechapicker" required/>
-                      <!-- <div class="input-group-append" data-target="#fechaHoraExtra" data-toggle="datetimepicker">
+                      <input type="date" name="fechaRecargo" class="form-control datetimepicker-input" data-target="#fechapicker" required/>
+                      <!-- <div class="input-group-append" data-target="#fechaRecargo" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="f fa-calendarr"></i></div>
                       </div> -->
                     </div>
@@ -253,7 +253,7 @@ include "../include/head.php";
                     <div class="form-group">
                       <label>Desde: <b>*</b></label>
                       <div class="input-group date" data-target-input="nearest">
-                        <input type="time" name="inicioHoraExtra" class="form-control datetimepicker-input" data-target="#timepicker1" required/>
+                        <input type="time" name="inicioRecargo" class="form-control datetimepicker-input" data-target="#timepicker1" required/>
                         <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="far fa-clockk"></i></div>
                         </div> -->
@@ -264,7 +264,7 @@ include "../include/head.php";
                     <div class="form-group">
                       <label>Hasta: <b>*</b></label>
                       <div class="input-group date" data-target-input="nearest">
-                        <input type="time" name="finalHoraExtra" class="form-control datetimepicker-input" data-target="#timepicker2" required/>
+                        <input type="time" name="finalRecargo" class="form-control datetimepicker-input" data-target="#timepicker2" required/>
                         <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="far fa-clockk"></i></div>
                         </div> -->
@@ -282,13 +282,13 @@ include "../include/head.php";
                     <div class="ml-auto">
                       <p>Obligatorio (<b>*</b>)</p>
                     </div>
+
                   <div class="ml-auto">
-                    <button type="submit" id="enviarHoraExtra" class="btn btn-primary">Enviar</button>
+                    <button type="submit" id="enviarRecargo" class="btn btn-primary">Enviar</button>
                     <button type="submit" class="btn btn-danger">Cancelar</button>
                   </div>
-
-                  <div class="ml-auto" id="result"></div>
                   
+                  <div id="result"></div>
               </div>
             </form>
           </div>
@@ -345,21 +345,21 @@ include "../include/head.php";
       })
     });
 
-    $("#formHorasExtras").submit(function(event) {
-        $('#enviarHoraExtra').attr("disabled", true);
+    $("#formRecargo").submit(function(event) {
+        $('#enviarRecargo').attr("disabled", true);
 
         var parametros = $(this).serialize();
         $.ajax({
             type: "POST",
-            url: "../action/guardarHoraExtra.php",
+            url: "../action/guardarRecargo.php",
             data: parametros,
             beforeSend: function(objeto) {
-                document.getElementById('formHorasExtras').reset();
+                document.getElementById('formRecargo').reset();
                 $("#result").html("Mensaje: Cargando...");
             },
             success: function(datos) {
                 $("#result").html(datos);
-                $('#enviarHoraExtra').attr("disabled", false);
+                $('#enviarRecargo').attr("disabled", false);
             }
         });
         event.preventDefault();

@@ -10,7 +10,8 @@
 
     if ($my_user_id != "admin"){
         $query = mysqli_query($conn,"SELECT u.foto, u.nombres, u.apellidos, u.email, u.password, u.username, u.usertype, r.idRestaurante, 
-                                r.nombre as nombreRestaurante, u.idSede, s.nombre as nombreSede, iu.cargo, iu.estudios, iu.ubicacion, iu.habilidades
+                                r.nombre as nombreRestaurante, u.idSede, s.nombre as nombreSede, 
+                                iu.cargo, iu.inicioContrato, iu.tipoContrato, iu.sueldo,  iu.pension, iu.salud, iu.arl
                                 from usuario u 
                                 INNER JOIN sede s ON s.idSede = u.idSede
                                 INNER JOIN restaurante r ON r.idRestaurante = s.idRestaurante
@@ -28,9 +29,12 @@
             $idSede = $row['idSede'];
             $nombreSede = $row['nombreSede'];
             $cargo = $row['cargo'];
-            $estudios = $row['estudios'];
-            $ubicacion = $row['ubicacion'];
-            $habilidades = $row['habilidades'];
+            $inicioContrato = $row['inicioContrato'];
+            $tipoContrato = $row['tipoContrato'];
+            $sueldo = $row['sueldo'];
+            $pension = $row['pension'];
+            $salud = $row['salud'];
+            $arl = $row['arl'];
         }
     }
     
