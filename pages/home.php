@@ -152,13 +152,13 @@ include "../include/head.php";
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../pages/incapacidad.php" class="nav-link">
+                <a href="incapacidad.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Incapacidad</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../pages/horasExtras.php" class="nav-link">
+                <a href="horasExtras.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Horas extras</p>
                 </a>
@@ -181,19 +181,19 @@ include "../include/head.php";
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="reporteIncapacidad.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Incapacidad</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="reporteHorasExtras.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Horas extras</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="reporteRecargo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Recargo</p>
                 </a>
