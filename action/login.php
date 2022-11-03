@@ -26,6 +26,7 @@
             die(); 
         }elseif ($row["usertype"]=="admin"){
             $_SESSION["user_id"]=$row["idUsuario"];
+            $_SESSION["usertype"] == $row["usertype"];
             session_start();
             header("location:../index.php");
             die();
