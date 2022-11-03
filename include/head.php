@@ -9,7 +9,7 @@
     $my_user_id = $_SESSION["user_id"];
 
     if ($my_user_id != "admin"){
-        $query = mysqli_query($conn,"SELECT u.foto, u.nombres, u.apellidos, u.email, u.password, u.username, u.usertype, r.idRestaurante, 
+        $query = mysqli_query($conn,"SELECT u.idUsuario, u.foto, u.nombres, u.apellidos, u.email, u.password, u.username, u.usertype, r.idRestaurante, 
                                 r.nombre as nombreRestaurante, u.idSede, s.nombre as nombreSede, 
                                 iu.cargo, iu.inicioContrato, iu.tipoContrato, iu.sueldo,  iu.pension, iu.salud, iu.arl
                                 from usuario u 
@@ -17,6 +17,7 @@
                                 INNER JOIN restaurante r ON r.idRestaurante = s.idRestaurante
                                 INNER JOIN info_usuario iu ON iu.idUsuario = $my_user_id");
         while($row = mysqli_fetch_array($query)){
+            $idUsuario = $row["idUsuario"];
             $foto = $row['foto'];
             $nombres = $row['nombres'];
             $apellidos = $row['apellidos'];
