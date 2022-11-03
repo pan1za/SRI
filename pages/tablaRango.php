@@ -5,7 +5,7 @@ include "../config/conexion.php";
 $fechaInicio = $_GET["inicio"];
 $fechaFin = $_GET["fin"];
 $idUsuario = $_SESSION["user_id"];
-
+ 
 if (isset($_GET["inicio"])) {
 ?>
     <table class="table table-bordered">

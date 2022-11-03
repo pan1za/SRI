@@ -367,7 +367,7 @@ include "../include/head.php";
         });
       });
     });
-
+ 
 
     // $( document ).ready(function(){
 
