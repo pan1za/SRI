@@ -165,19 +165,19 @@ include "../include/head.php";
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../pages/forms/general.html" class="nav-link">
+                  <a href="reporteIncapacidad.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Incapacidad</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../pages/forms/advanced.html" class="nav-link">
+                  <a href="reporteHorasExtras.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Horas extras</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="recargo.php" class="nav-link">
+                  <a href="reporteRecargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recargo</p>
                   </a>
@@ -220,75 +220,75 @@ include "../include/head.php";
           <div class="card-body">
             <form id="formRecargo" method="POST">
               <div class="card card-body w-50 offset-3">
-                  <div class="form-group">
-                    <label>Recargo a reconocer <b>*</b></label>
-                    <select name="tipoRecargo" id="tipoRecargo" class="form-control" required>
-                      <option value="" selected disabled autofocus>Seleccione una opción</option>,  y 
-                      <option value="Recargo nocturno">Recargo nocturno</option>
-                      <option value="Recargo nocturno dominical/festivo ordinario">Recargo nocturno dominical/festivo ordinario</option>
-                      <option value="Recargo nocturno dominical/festivo">Recargo nocturno dominical/festivo</option>
-                    </select>
-                  </div>
+                <div class="form-group">
+                  <label>Recargo a reconocer <b>*</b></label>
+                  <select name="tipoRecargo" id="tipoRecargo" class="form-control" required>
+                    <option value="" selected disabled autofocus>Seleccione una opción</option>, y
+                    <option value="Recargo nocturno">Recargo nocturno</option>
+                    <option value="Recargo nocturno dominical/festivo ordinario">Recargo nocturno dominical/festivo ordinario</option>
+                    <option value="Recargo nocturno dominical/festivo">Recargo nocturno dominical/festivo</option>
+                  </select>
+                </div>
 
-                  <div class="form-group">
-                    <label for="jornada">Jornada <b>*</b></label>
-                    <select name="jornada" id="jornada" class="form-control" required>
-                      <option value="" selected disabled focus>Seleccione una opción</option>
-                      <!-- <option value="Diurna">Diurna</option> -->
-                      <option value="Nocturna">Nocturna</option>
-                    </select>
-                  </div>
+                <div class="form-group">
+                  <label for="jornada">Jornada <b>*</b></label>
+                  <select name="jornada" id="jornada" class="form-control">
+                    <!-- <option value="" selected disabled focus>Seleccione una opción</option> -->
+                    <!-- <option value="Diurna">Diurna</option> -->
+                    <option value="Nocturna" selected>Nocturna</option>
+                  </select>
+                </div>
 
-                  <div class="form-group">
-                    <label>Fecha: <b>*</b></label>
-                    <div class="input-group date" data-target-input="nearest">
-                      <input type="date" name="fechaRecargo" class="form-control datetimepicker-input" data-target="#fechapicker" required/>
-                      <!-- <div class="input-group-append" data-target="#fechaRecargo" data-toggle="datetimepicker">
+                <div class="form-group">
+                  <label>Fecha: <b>*</b></label>
+                  <div class="input-group date" data-target-input="nearest">
+                    <input type="date" name="fechaRecargo" class="form-control datetimepicker-input" data-target="#fechapicker" required />
+                    <!-- <div class="input-group-append" data-target="#fechaRecargo" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="f fa-calendarr"></i></div>
                       </div> -->
-                    </div>
                   </div>
+                </div>
 
-                  <div class="bootstrap-timepicker">
-                    <div class="form-group">
-                      <label>Desde: <b>*</b></label>
-                      <div class="input-group date" data-target-input="nearest">
-                        <input type="time" name="inicioRecargo" class="form-control datetimepicker-input" data-target="#timepicker1" required/>
-                        <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
-                        </div> -->
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-
-                    <div class="form-group">
-                      <label>Hasta: <b>*</b></label>
-                      <div class="input-group date" data-target-input="nearest">
-                        <input type="time" name="finalRecargo" class="form-control datetimepicker-input" data-target="#timepicker2" required/>
-                        <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
-                        </div> -->
-                      </div>
-                    </div>
-                    <!-- /.form group -->
-                  </div>
-                  
+                <div class="bootstrap-timepicker">
                   <div class="form-group">
-                    <label>Observaciones</label>
-                    <div class="">
-                      <textarea class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="Escriba algo si es necesario"></textarea>
+                    <label>Desde: <b>*</b></label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input type="time" name="inicioRecargo" class="form-control datetimepicker-input" data-target="#timepicker1" required />
+                      <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
+                        </div> -->
                     </div>
+                    <!-- /.input group -->
                   </div>
-                    <div class="ml-auto">
-                      <p>Obligatorio (<b>*</b>)</p>
-                    </div>
 
-                  <div class="ml-auto">
-                    <button type="submit" id="enviarRecargo" class="btn btn-primary">Enviar</button>
-                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                  <div class="form-group">
+                    <label>Hasta: <b>*</b></label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input type="time" name="finalRecargo" class="form-control datetimepicker-input" data-target="#timepicker2" required />
+                      <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
+                        </div> -->
+                    </div>
                   </div>
-                  
-                  <div id="result"></div>
+                  <!-- /.form group -->
+                </div>
+
+                <div class="form-group">
+                  <label>Observaciones</label>
+                  <div class="">
+                    <textarea class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="Escriba algo si es necesario"></textarea>
+                  </div>
+                </div>
+                <div class="ml-auto">
+                  <p>Obligatorio (<b>*</b>)</p>
+                </div>
+
+                <div class="ml-auto">
+                  <button type="submit" id="enviarRecargo" class="btn btn-primary">Enviar</button>
+                  <button type="submit" class="btn btn-danger">Cancelar</button>
+                </div>
+
+                <div class="ml-auto" id="result"></div>
               </div>
             </form>
           </div>
@@ -346,23 +346,23 @@ include "../include/head.php";
     });
 
     $("#formRecargo").submit(function(event) {
-        $('#enviarRecargo').attr("disabled", true);
+      $('#enviarRecargo').attr("disabled", true);
 
-        var parametros = $(this).serialize();
-        $.ajax({
-            type: "POST",
-            url: "../action/guardarRecargo.php",
-            data: parametros,
-            beforeSend: function(objeto) {
-                document.getElementById('formRecargo').reset();
-                $("#result").html("Mensaje: Cargando...");
-            },
-            success: function(datos) {
-                $("#result").html(datos);
-                $('#enviarRecargo').attr("disabled", false);
-            }
-        });
-        event.preventDefault();
+      var parametros = $(this).serialize();
+      $.ajax({
+        type: "POST",
+        url: "../action/guardarRecargo.php",
+        data: parametros,
+        beforeSend: function(objeto) {
+          document.getElementById('formRecargo').reset();
+          $("#result").html("Mensaje: Cargando...");
+        },
+        success: function(datos) {
+          $("#result").html(datos);
+          $('#enviarRecargo').attr("disabled", false);
+        }
+      });
+      event.preventDefault();
     })
   </script>
 </body>

@@ -165,19 +165,19 @@ include "../include/head.php";
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../pages/forms/general.html" class="nav-link">
+                  <a href="reporteIncapacidad.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Incapacidad</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../pages/forms/advanced.html" class="nav-link">
+                  <a href="reporteHorasExtras.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Horas extras</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="recargo.php" class="nav-link">
+                  <a href="reporteRecargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recargo</p>
                   </a>
@@ -214,26 +214,25 @@ include "../include/head.php";
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-3">
-                <div class="card card-primary card--outline">
-                  <div class="card-header">
-                      <h3 class="card-title">Mi perfil</h3>
+              <div class="card card-primary card--outline">
+                <div class="card-header">
+                  <h3 class="card-title">Mi perfil</h3>
+                </div>
+                <div class="card-body box-profile">
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="../dist/img/perfiles/<?php echo $foto ?>" class="img-circle elevation-2" alt="User profile picture">
                   </div>
-                  <div class="card-body box-profile">
-                    <div class="text-center">
-                      <img class="profile-user-img img-fluid img-circle" src="../dist/img/perfiles/<?php echo $foto ?>" class="img-circle elevation-2" alt="User profile picture">
-                    </div>
-                    <h3 class="profile-username text-center"><?php echo $nombres . ' ' . $apellidos ?></h3>
-                    <?php
-                      if($usertype != "admin"){?>
-                        <p class="text-muted text-center"><?php echo $cargo . ' <br> ' . $nombreRestaurante ?> sede <?php echo $nombreSede ?></p>
-                        <?php 
-                      }
-                      elseif($usertype != "user"){?>
-                        <p class="text-muted text-center"><?php echo $cargo?></p>
-                        <?php
-                      }
-                    ?>
-                    <!-- <div class="card-body">
+                  <h3 class="profile-username text-center"><?php echo $nombres . ' ' . $apellidos ?></h3>
+                  <?php
+                  if ($usertype != "admin") { ?>
+                    <p class="text-muted text-center"><?php echo $cargo . ' <br> ' . $nombreRestaurante ?> sede <?php echo $nombreSede ?></p>
+                  <?php
+                  } elseif ($usertype != "user") { ?>
+                    <p class="text-muted text-center"><?php echo $cargo ?></p>
+                  <?php
+                  }
+                  ?>
+                  <!-- <div class="card-body">
                       <form method="POST" id="formFoto" enctype="multipart/form-data"> 
                         <div>
                           <div class="custom-file">
@@ -248,21 +247,21 @@ include "../include/head.php";
                       </form>
                       <div id="resultFoto"></div>
                     </div> -->
-                  </div><!-- /.card-body -->
-                </div><!-- /.card -->
+                </div><!-- /.card-body -->
+              </div><!-- /.card -->
 
-            <!-- Cambiar foto de perfil -->
-            <div class="card card-primary">
+              <!-- Cambiar foto de perfil -->
+              <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Cambiar foto de perfil</h3>
+                  <h3 class="card-title">Cambiar foto de perfil</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <form method="POST" id="formFoto" enctype="multipart/form-data"> 
+                  <form method="POST" id="formFoto" enctype="multipart/form-data">
                     <div>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="foto" name="foto">
-                          <label class="custom-file-label">Nueva foto de perfil</label>
+                        <label class="custom-file-label">Nueva foto de perfil</label>
                       </div>
                     </div>
                     <br>
@@ -272,12 +271,12 @@ include "../include/head.php";
                   </form>
                   <div id="resultFoto"></div>
                 </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
 
-            <!-- About Me Box -->
-            <!-- <div class="card card-primary">
+              <!-- About Me Box -->
+              <!-- <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Sobre mí</h3>
               </div>
@@ -308,12 +307,12 @@ include "../include/head.php";
               </div>
             </div> -->
 
-          </div>
-          <!-- /.col -->
+            </div>
+            <!-- /.col -->
             <div class="col-md-9">
-                <div class="card card-primaryy">
+              <div class="card card-primaryy">
                 <div class="card-header p-2">
-                    <!-- <h3 class="card-title">Datos personales</h3> -->
+                  <!-- <h3 class="card-title">Datos personales</h3> -->
                   <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="#datosPersonales" data-toggle="tab">Datos Personales</a></li>
                     <li class="nav-item"><a class="nav-link" href="#datosLaborales" data-toggle="tab">Datos Laborales</a></li>
@@ -326,11 +325,11 @@ include "../include/head.php";
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">Nombres:</label>
                           <input type="text" class="form-control" value="<?php echo $nombres ?>" disabled>
-                           <div class="input-group-append">
-                              <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                              </div>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
                             </div>
+                          </div>
                         </div>
                         <br>
                         <div class="input-group mb-3">
@@ -379,7 +378,7 @@ include "../include/head.php";
                         <!-- <div class="input-group mb-3">
                           <button type="submit" class="btn btn-primary ml-auto">Actualizar datos</button>
                         </div> -->
-                                
+
                       </div><!-- /.card -->
                     </div><!-- datos personales -->
 
@@ -388,11 +387,11 @@ include "../include/head.php";
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">Cargo:</label>
                           <input type="text" class="form-control" value="<?php echo $cargo ?>" disabled>
-                           <div class="input-group-append">
-                              <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                              </div>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
                             </div>
+                          </div>
                         </div>
 
                         <div class="input-group mb-3">
@@ -458,42 +457,42 @@ include "../include/head.php";
                     </div> <!-- datos laborales -->
                   </div><!-- /.tab-content -->
                 </div><!-- /.card-body -->
-                </div><!-- /.card primary-->
-                
-                <div class="card card-primary">
-                  <div class="card-header">
-                    <h3 class="card-title">Hoja de vida</h3>
-                  </div><!-- /.card-header -->
-                  <div class="card-body">
-                    <div class="tab-content">
-                      <div class="card-body">
-                        <form method="POST" id="formHojaDeVida" enctype="multipart/form-data">
-                          <div class="input-group mb-3">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="hojaDeVida" required>
-                              <label class="custom-file-label">Actualizar hoja de vida</label>
-                            </div>
+              </div><!-- /.card primary-->
+
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Hoja de vida</h3>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="card-body">
+                      <form method="POST" id="formHojaDeVida" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="hojaDeVida" required>
+                            <label class="custom-file-label">Actualizar hoja de vida</label>
                           </div>
-                          <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
-                          </div>
-                        </form>
-                        <div class="input-group mt-3">
-                          <button type="submit" id="" class="btn btn-success ml-auto">
-                            <span>Descargar hoja de vida</span>
-                          </button>
                         </div>
-                        <div class="mt-3 col-5 ml-auto" id="resultHojaDeVida"></div>
-                      </div><!-- /.card -->
-                    </div><!-- /.tab-content -->
-                  </div><!-- /.card-body -->
-                </div><!-- /.card primary secundary-->
+                        <div class="input-group mb-3">
+                          <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
+                        </div>
+                      </form>
+                      <div class="input-group mt-3">
+                        <button type="submit" id="" class="btn btn-success ml-auto">
+                          <span>Descargar hoja de vida</span>
+                        </button>
+                      </div>
+                      <div class="mt-3 col-5 ml-auto" id="resultHojaDeVida"></div>
+                    </div><!-- /.card -->
+                  </div><!-- /.tab-content -->
+                </div><!-- /.card-body -->
+              </div><!-- /.card primary secundary-->
+            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -542,96 +541,96 @@ include "../include/head.php";
     })
   </script>
   <script type="text/javascript">
-    function mostrarPassword1(){
-        var cambio1 = document.getElementById("password1");
-        if(cambio1.type == "password"){
-          cambio1.type = "text";
-          $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-        }else{
-          cambio1.type = "password";
-          $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-        }
+    function mostrarPassword1() {
+      var cambio1 = document.getElementById("password1");
+      if (cambio1.type == "password") {
+        cambio1.type = "text";
+        $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      } else {
+        cambio1.type = "password";
+        $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
       }
+    }
 
-    function mostrarPassword2(){
-        var cambio2 = document.getElementById("password2");
-        if(cambio2.type == "password"){
-          cambio2.type = "text";
-          $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-        }else{
-          cambio2.type = "password";
-          $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    function mostrarPassword2() {
+      var cambio2 = document.getElementById("password2");
+      if (cambio2.type == "password") {
+        cambio2.type = "text";
+        $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      } else {
+        cambio2.type = "password";
+        $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      }
+    };
+
+    // $(function(){
+    // $("input[name='file']").on("change", function(){
+    //   var formData = new FormData($("#formulario")[0]);
+    //   var ruta = "../action/actualizarFoto.php";
+    //   $.ajax({
+    //       url: ruta,
+    //       type: "POST",
+    //       data: formData,
+    //       contentType: false,
+    //       processData: false,
+    //       success: function(datos)
+    //       {
+    //           $("#resultFoto").html(datos);
+    //       }
+    //   });
+    // });
+    // });
+
+    $("#formFoto").submit(function(event) {
+      $('#cambiarFoto').attr("disabled", true);
+      var archivo = $("#foto").prop('files')[0];
+      var formData = new FormData();
+      formData.append("foto", archivo);
+      var ruta = "../action/actualizarFoto.php";
+
+      $.ajax({
+        type: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        url: ruta,
+        beforeSend: function(objeto) {
+          document.getElementById('formFoto').reset();
+          $("#resultFoto").html("Mensaje: Cargando...");
+        },
+        success: function(datos) {
+          $("#resultFoto").html(datos);
+          $('#cambiarFoto').attr("disabled", false);
         }
-      };
-
-      // $(function(){
-      // $("input[name='file']").on("change", function(){
-      //   var formData = new FormData($("#formulario")[0]);
-      //   var ruta = "../action/actualizarFoto.php";
-      //   $.ajax({
-      //       url: ruta,
-      //       type: "POST",
-      //       data: formData,
-      //       contentType: false,
-      //       processData: false,
-      //       success: function(datos)
-      //       {
-      //           $("#resultFoto").html(datos);
-      //       }
-      //   });
-      // });
-      // });
-
-      $("#formFoto").submit(function(event) {
-        $('#cambiarFoto').attr("disabled", true);
-        var archivo = $("#foto").prop('files')[0];
-        var formData = new FormData();
-        formData.append("foto",archivo);
-        var ruta = "../action/actualizarFoto.php";
-
-        $.ajax({
-          type: "POST",
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: formData,
-          url: ruta,
-            beforeSend: function(objeto) {
-                document.getElementById('formFoto').reset();
-                $("#resultFoto").html("Mensaje: Cargando...");
-            },
-            success: function(datos) {
-                $("#resultFoto").html(datos);
-                $('#cambiarFoto').attr("disabled", false);
-            }
-        });
-        event.preventDefault();
       });
+      event.preventDefault();
+    });
 
-      $("#formHojaDeVida").submit(function(event) {
-        $('#enviarHojaDeVida').attr("disabled", true);
-        var archivo = $("#hojaDeVida").prop('files')[0];
-        var formData = new FormData();
-        formData.append("hojaDeVida",archivo);
-        var ruta = "../action/guardarHojaDeVida.php";
+    $("#formHojaDeVida").submit(function(event) {
+      $('#enviarHojaDeVida').attr("disabled", true);
+      var archivo = $("#hojaDeVida").prop('files')[0];
+      var formData = new FormData();
+      formData.append("hojaDeVida", archivo);
+      var ruta = "../action/guardarHojaDeVida.php";
 
-        $.ajax({
-          type: "POST",
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: formData,
-          url: ruta,
-            beforeSend: function(objeto) {
-                document.getElementById('formHojaDeVida').reset();
-                $("#resultHojaDeVida").html("Mensaje: Cargando...");
-            },
-            success: function(datos) {
-                $("#resultHojaDeVida").html(datos);
-                $('#enviarHojaDeVida').attr("disabled", false);
-            }
-        });
-        event.preventDefault();
+      $.ajax({
+        type: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        url: ruta,
+        beforeSend: function(objeto) {
+          document.getElementById('formHojaDeVida').reset();
+          $("#resultHojaDeVida").html("Mensaje: Cargando...");
+        },
+        success: function(datos) {
+          $("#resultHojaDeVida").html(datos);
+          $('#enviarHojaDeVida').attr("disabled", false);
+        }
+      });
+      event.preventDefault();
     });
   </script>
 </body>
