@@ -24,8 +24,9 @@ include "../include/head.php";
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="../plugins/moment/moment.min.js"></script>
+  <!-- <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script> -->
+  <!-- <script type="text/javascript" src="../plugins/moment/moment.min.js"></script> -->
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 
 
 </head>
@@ -129,50 +130,62 @@ include "../include/head.php";
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Reportar
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="incapacidad.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Incapacidad</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="horasExtras.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Horas extras</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="recargo.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            <?php if ($my_user_type == "user") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Reportar
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="incapacidad.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Incapacidad</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="horasExtras.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Horas extras</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="recargo.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recargo</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Mis reportes
+                  <?php
+                  if ($my_user_type == "user") { ?>
+                    Mis reportes
+                  <?php
+                  } elseif ($my_user_type == "admin") { ?>
+                    Reportes
+                  <?php
+                  }
+                  ?>
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../pages/forms/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Incapacidad</p>
-                  </a>
-                </li>
+                <!-- <li class="nav-item">
+                <a href="reporteIncapacidad.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Incapacidad</p>
+                </a>
+              </li> -->
                 <li class="nav-item">
                   <a href="reporteHorasExtras.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
@@ -180,12 +193,34 @@ include "../include/head.php";
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="ReporteRecargo.php" class="nav-link">
+                  <a href="reporteRecargo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recargo</p>
                   </a>
                 </li>
               </ul>
+            </li>
+            <?php if ($my_user_type == "admin") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-plus-circle"></i>
+                  <p>
+                    Crear
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="crearEmpleado.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Empleado</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -200,7 +235,16 @@ include "../include/head.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Mis reportes</h1>
+              <h1>
+                <?php if ($my_user_type == "user") { ?>
+                  Mis reportes
+                <?php
+                } elseif ($my_user_type == "admin") { ?>
+                  Reporte de empleados
+                <?php
+                }
+                ?>
+              </h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -218,7 +262,7 @@ include "../include/head.php";
         <!-- Default box -->
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Reporte Horas Extras</h3>
+            <h3 class="card-title">Reporte de Horas Extras</h3>
           </div>
           <div class="card-body">
             <div class="card card-body">
@@ -233,9 +277,14 @@ include "../include/head.php";
             </div>
             <div class="table-responsive" id="tablaHorasExtrasDia" style="display: none">
               <h4>Horas extras por día</h4>
-              <table class="table table-bordered">
+              <table class="table table-bordered" id="tabla">
                 <thead class="bg-primary" align="center">
                   <tr class="sidebar-dark-primary">
+                    <?php if ($my_user_type == "admin") { ?>
+                      <th scope="col">Realizado por</th>
+                    <?php
+                    }
+                    ?>
                     <th scope="col">Tipo hora extra</th>
                     <th scope="col">Jornada</th>
                     <th scope="col">Fecha</th>
@@ -247,25 +296,52 @@ include "../include/head.php";
                   </tr>
                 </thead>
                 <tbody align="center">
-                  <?php foreach ($conn->query("SELECT idHoraExtra, tipoHoraExtra, jornada, DATE_FORMAT(fecha, '%e %M %Y') as fecha, inicio, fin, 
-                                TRUNCATE(TIME_TO_SEC(fin-inicio) DIV 60/60,1) as horasExtras, observaciones
-                                FROM hora_extra
-                                WHERE idUsuario = '$idUsuario'") as $row) {
-                  ?>
-                    <tr>
-                      <td><?php echo $row['tipoHoraExtra'] ?></td>
-                      <td><?php echo $row['jornada'] ?></td>
-                      <td><?php echo $row['fecha'] ?></td>
-                      <td><?php echo $row['inicio'] ?></td>
-                      <td><?php echo $row['fin'] ?></td>
-                      <td><?php echo $row['observaciones'] ?></td>
-                      <td><?php echo $row['horasExtras'] ?></td>
-                      <!-- <td>
-                                            <a href="editarHoraExtra.php?idHoraExtra=<?php echo $row['idHoraExtra'] ?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
-                                            <a href="eliminarHoraExtra.php?idHoraExtra=<?php echo $row['idHoraExtra'] ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                                        </td> -->
-                    </tr>
                   <?php
+                  if ($my_user_type == "admin") {
+                    foreach ($conn->query("SELECT he.idHoraExtra, he.tipoHoraExtra, he.jornada, DATE_FORMAT(he.fecha, '%e %M %Y') as fecha, 
+                                  TIME_FORMAT(he.inicio, '%r') as inicio, TIME_FORMAT(he.fin, '%r') as fin, 
+                                  TRUNCATE(TIME_TO_SEC(he.fin-he.inicio) DIV 60/60,1) as horasExtras, he.observaciones, u.nombres, u.apellidos
+                                  FROM hora_extra he
+                                  INNER JOIN usuario u ON u.idUsuario = he.idUsuario") as $row) {
+                  ?>
+                      <tr>
+                        <td><?php echo $row['nombres'] . ' ' . $row['apellidos'] ?></td>
+                        <td><?php echo $row['tipoHoraExtra'] ?></td>
+                        <td><?php echo $row['jornada'] ?></td>
+                        <td><?php echo $row['fecha'] ?></td>
+                        <td><?php echo $row['inicio'] ?></td>
+                        <td><?php echo $row['fin'] ?></td>
+                        <td><?php echo $row['observaciones'] ?></td>
+                        <td><?php echo $row['horasExtras'] ?></td>
+                        <!-- <td>
+                        <a href="editarHoraExtra.php?idHoraExtra=<?php echo $row['idHoraExtra'] ?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
+                        <a href="eliminarHoraExtra.php?idHoraExtra=<?php echo $row['idHoraExtra'] ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                        </td> -->
+                      </tr>
+                    <?php
+                    }
+                  } elseif ($my_user_type == "user") {
+                    foreach ($conn->query("SELECT idHoraExtra, tipoHoraExtra, jornada, DATE_FORMAT(fecha, '%e %M %Y') as fecha, 
+                                  TIME_FORMAT(inicio, '%r') as inicio, TIME_FORMAT(fin, '%r') as fin, 
+                                  TRUNCATE(TIME_TO_SEC(fin-inicio) DIV 60/60,1) as horasExtras, observaciones
+                                  FROM hora_extra
+                                  WHERE idUsuario = '$my_user_id'") as $row) {
+                    ?>
+                      <tr>
+                        <td><?php echo $row['tipoHoraExtra'] ?></td>
+                        <td><?php echo $row['jornada'] ?></td>
+                        <td><?php echo $row['fecha'] ?></td>
+                        <td><?php echo $row['inicio'] ?></td>
+                        <td><?php echo $row['fin'] ?></td>
+                        <td><?php echo $row['observaciones'] ?></td>
+                        <td><?php echo $row['horasExtras'] ?></td>
+                        <!-- <td>
+                        <a href="editarHoraExtra.php?idHoraExtra=<?php echo $row['idHoraExtra'] ?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
+                        <a href="eliminarHoraExtra.php?idHoraExtra=<?php echo $row['idHoraExtra'] ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                        </td> -->
+                      </tr>
+                  <?php
+                    }
                   }
                   ?>
                 </tbody>
@@ -273,14 +349,7 @@ include "../include/head.php";
             </div>
             <div class="table-responsive" id="tablaHorasExtrasRango" style="display: none">
               <h4 class="tituloRango">Horas extras por rango <span style="font-weight: bold"></span><strong class="rangoTitulo"></strong></h4>
-              <div id="tablaHorasRango"></div>
-              <?php foreach ($conn->query("SELECT SUM(TRUNCATE(TIME_TO_SEC(fin-inicio) DIV 60/60,1)) as totalHorasExtras
-                        FROM hora_extra
-                        WHERE idUsuario = '$idUsuario'") as $row) {
-              ?>
-              <?php
-              }
-              ?>
+              <div id="horasRango"></div>
             </div>
           </div>
         </div>
@@ -307,6 +376,10 @@ include "../include/head.php";
 
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- Moment -->
+  <script type="text/javascript" src="../plugins/moment/moment.min.js"></script>
+  <!-- DataTable -->
+  <script src="../plugins/datatables/jquery.dataTables.js"></script>
   <!-- Bootstrap 4 -->
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- bs-custom-file-input -->
@@ -335,7 +408,7 @@ include "../include/head.php";
         format: 'LT'
       })
     });
-   
+
 
     function mostrar(dato) {
       if (dato == "dia") {
@@ -360,14 +433,18 @@ include "../include/head.php";
         var fechaFin = end.format('YYYY-MM-DD');
 
         $.ajax({
-          url: 'tablaRango.php?inicio=' + fechaInicio + '&fin=' + fechaFin,
+          url: 'tablaRangoHE.php?inicio=' + fechaInicio + '&fin=' + fechaFin,
           success: function(datos) {
-            $("#tablaHorasRango").html(datos);
+            $("#horasRango").html(datos);
           }
         });
       });
     });
- 
+
+    $(document).ready(function() {
+      $('#tabla').DataTable();
+    });
+
 
     // $( document ).ready(function(){
 
