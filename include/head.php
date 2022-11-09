@@ -7,15 +7,17 @@
     }
     
     $my_user_id = $_SESSION["user_id"];
+    $my_user_type = $_SESSION["user_type"];
 
-    if ($my_user_id != "admin"){
+    if ($my_user_type == "user"){
         $query = mysqli_query($conn,"SELECT u.idUsuario, u.foto, u.nombres, u.apellidos, u.email, u.password, u.username, u.usertype, r.idRestaurante, 
-                                r.nombre as nombreRestaurante, u.idSede, s.nombre as nombreSede, 
-                                iu.cargo, iu.inicioContrato, iu.tipoContrato, iu.sueldo,  iu.pension, iu.salud, iu.arl
-                                from usuario u 
-                                INNER JOIN sede s ON s.idSede = u.idSede
-                                INNER JOIN restaurante r ON r.idRestaurante = s.idRestaurante
-                                INNER JOIN info_usuario iu ON iu.idUsuario = $my_user_id");
+                                    r.nombre as nombreRestaurante, u.idSede, s.nombre as nombreSede, 
+                                    iu.cargo, iu.inicioContrato, iu.tipoContrato, iu.sueldo,  iu.pension, iu.salud, iu.arl
+                                    from usuario u 
+                                    INNER JOIN sede s ON s.idSede = u.idSede
+                                    INNER JOIN restaurante r ON r.idRestaurante = s.idRestaurante
+                                    INNER JOIN info_usuario iu ON iu.idUsuario = $my_user_id
+                                    where u.idUsuario = $my_user_id");
         while($row = mysqli_fetch_array($query)){
             $idUsuario = $row["idUsuario"];
             $foto = $row['foto'];
@@ -39,8 +41,12 @@
         }
     }
     
-    if ($my_user_id != "user"){
-        $query = mysqli_query($conn,"SELECT u.foto, u.nombres, u.apellidos, u.email, u.username, u.usertype from usuario u where idUsuario = $my_user_id");
+    if ($my_user_type == "admin"){
+        $query = mysqli_query($conn,"SELECT u.foto, u.nombres, u.apellidos, u.email, u.username, u.usertype, r.nombre as nombreRestaurante, r.idRestaurante, iu.cargo
+                                    from usuario u 
+                                    INNER JOIN restaurante r ON r.idRestaurante = u.idRestaurante
+                                    INNER JOIN info_usuario iu ON iu.idUsuario = $my_user_id
+                                    where u.idUsuario = $my_user_id");
         while($row = mysqli_fetch_array($query)){
             $foto = $row['foto'];
             $nombres = $row['nombres'];
@@ -48,6 +54,9 @@
             $email = $row['email'];
             $username = $row['username'];
             $usertype = $row['usertype'];
+            $cargo = $row['cargo'];
+            $idRestaurante = $row['idRestaurante'];
+            $nombreRestaurante= $row['nombreRestaurante'];
         }
     }
     
