@@ -164,12 +164,12 @@ include "../include/head.php";
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="reporteIncapacidad.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Incapacidad</p>
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a href="reporteHorasExtras.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -183,6 +183,28 @@ include "../include/head.php";
                   </a>
                 </li>
               </ul>
+            </li>
+            <?php if ($my_user_type == "admin") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-plus-circle"></i>
+                  <p>
+                    Crear
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="crearEmpleado.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Empleado</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -220,75 +242,75 @@ include "../include/head.php";
           <div class="card-body">
             <form id="formHorasExtras" method="POST">
               <div class="card card-body w-50 offset-3">
-                  <div class="form-group">
-                    <label>Horas extras a reconocer <b>*</b></label>
-                    <select name="tipoHoraExtra" id="tipoHoraExtra" class="form-control" required>
-                      <option value="" selected disabled autofocus>Seleccione una opción</option>
-                      <option value="Hora extra día ordinario">Horas extras días ordinarios</option>
-                      <option value="Hora extra día domingo">Horas extras días domingos</option>
-                      <option value="Hora extra día festivo">Horas extras días festivos</option>
-                    </select>
-                  </div>
+                <div class="form-group">
+                  <label>Horas extras a reconocer <b>*</b></label>
+                  <select name="tipoHoraExtra" id="tipoHoraExtra" class="form-control" required>
+                    <option value="" selected disabled autofocus>Seleccione una opción</option>
+                    <option value="Hora extra día ordinario">Horas extras días ordinarios</option>
+                    <option value="Hora extra día domingo">Horas extras días domingos</option>
+                    <option value="Hora extra día festivo">Horas extras días festivos</option>
+                  </select>
+                </div>
 
-                  <div class="form-group">
-                    <label for="jornada">Jornada <b>*</b></label>
-                    <select name="jornada" id="jornada" class="form-control" required>
-                      <option value="" selected disabled focus>Seleccione una opción</option>
-                      <option value="Diurna">Diurna</option>
-                      <option value="Nocturna">Nocturna</option>
-                    </select>
-                  </div>
+                <div class="form-group">
+                  <label for="jornada">Jornada <b>*</b></label>
+                  <select name="jornada" id="jornada" class="form-control" required>
+                    <option value="" selected disabled focus>Seleccione una opción</option>
+                    <option value="Diurna">Diurna</option>
+                    <option value="Nocturna">Nocturna</option>
+                  </select>
+                </div>
 
-                  <div class="form-group">
-                    <label>Fecha: <b>*</b></label>
-                    <div class="input-group date" data-target-input="nearest">
-                      <input type="date" name="fechaHoraExtra" class="form-control datetimepicker-input" data-target="#fechapicker" required/>
-                      <!-- <div class="input-group-append" data-target="#fechaHoraExtra" data-toggle="datetimepicker">
+                <div class="form-group">
+                  <label>Fecha: <b>*</b></label>
+                  <div class="input-group date" data-target-input="nearest">
+                    <input type="date" name="fechaHoraExtra" class="form-control datetimepicker-input" data-target="#fechapicker" required />
+                    <!-- <div class="input-group-append" data-target="#fechaHoraExtra" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="f fa-calendarr"></i></div>
                       </div> -->
-                    </div>
                   </div>
+                </div>
 
-                  <div class="bootstrap-timepicker">
-                    <div class="form-group">
-                      <label>Desde: <b>*</b></label>
-                      <div class="input-group date" data-target-input="nearest">
-                        <input type="time" name="inicioHoraExtra" class="form-control datetimepicker-input" data-target="#timepicker1" required/>
-                        <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
-                        </div> -->
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-
-                    <div class="form-group">
-                      <label>Hasta: <b>*</b></label>
-                      <div class="input-group date" data-target-input="nearest">
-                        <input type="time" name="finalHoraExtra" class="form-control datetimepicker-input" data-target="#timepicker2" required/>
-                        <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
-                        </div> -->
-                      </div>
-                    </div>
-                    <!-- /.form group -->
-                  </div>
-                  
+                <div class="bootstrap-timepicker">
                   <div class="form-group">
-                    <label>Observaciones</label>
-                    <div class="">
-                      <textarea class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="Escriba algo si es necesario"></textarea>
+                    <label>Desde: <b>*</b></label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input type="time" name="inicioHoraExtra" class="form-control datetimepicker-input" data-target="#timepicker1" required />
+                      <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
+                        </div> -->
                     </div>
-                  </div>
-                    <div class="ml-auto">
-                      <p>Obligatorio (<b>*</b>)</p>
-                    </div>
-                  <div class="ml-auto">
-                    <button type="submit" id="enviarHoraExtra" class="btn btn-primary">Enviar</button>
-                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                    <!-- /.input group -->
                   </div>
 
-                  <div class="ml-auto" id="result"></div>
-                  
+                  <div class="form-group">
+                    <label>Hasta: <b>*</b></label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input type="time" name="finalHoraExtra" class="form-control datetimepicker-input" data-target="#timepicker2" required />
+                      <!-- <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="far fa-clockk"></i></div>
+                        </div> -->
+                    </div>
+                  </div>
+                  <!-- /.form group -->
+                </div>
+
+                <div class="form-group">
+                  <label>Observaciones</label>
+                  <div class="">
+                    <textarea class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="Escriba algo si es necesario"></textarea>
+                  </div>
+                </div>
+                <div class="ml-auto">
+                  <p>Obligatorio (<b>*</b>)</p>
+                </div>
+                <div class="ml-auto">
+                  <button type="submit" id="enviarHoraExtra" class="btn btn-primary">Enviar</button>
+                  <button type="submit" class="btn btn-danger">Cancelar</button>
+                </div>
+
+                <div class="ml-auto" id="result"></div>
+
               </div>
             </form>
           </div>
@@ -346,23 +368,23 @@ include "../include/head.php";
     });
 
     $("#formHorasExtras").submit(function(event) {
-        $('#enviarHoraExtra').attr("disabled", true);
+      $('#enviarHoraExtra').attr("disabled", true);
 
-        var parametros = $(this).serialize();
-        $.ajax({
-            type: "POST",
-            url: "../action/guardarHoraExtra.php",
-            data: parametros,
-            beforeSend: function(objeto) {
-                document.getElementById('formHorasExtras').reset();
-                $("#result").html("Mensaje: Cargando...");
-            },
-            success: function(datos) {
-                $("#result").html(datos);
-                $('#enviarHoraExtra').attr("disabled", false);
-            }
-        });
-        event.preventDefault();
+      var parametros = $(this).serialize();
+      $.ajax({
+        type: "POST",
+        url: "../action/guardarHoraExtra.php",
+        data: parametros,
+        beforeSend: function(objeto) {
+          document.getElementById('formHorasExtras').reset();
+          $("#result").html("Mensaje: Cargando...");
+        },
+        success: function(datos) {
+          $("#result").html(datos);
+          $('#enviarHoraExtra').attr("disabled", false);
+        }
+      });
+      event.preventDefault();
     })
   </script>
 </body>

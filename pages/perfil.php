@@ -126,50 +126,62 @@ include "../include/head.php";
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Reportar
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="incapacidad.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Incapacidad</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="horasExtras.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Horas extras</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="recargo.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            <?php if ($my_user_type == "user") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Reportar
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="incapacidad.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Incapacidad</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="horasExtras.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Horas extras</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="recargo.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recargo</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Mis reportes
+                  <?php
+                  if ($my_user_type == "user") { ?>
+                    Mis reportes
+                  <?php
+                  } elseif ($my_user_type == "admin") { ?>
+                    Reportes
+                  <?php
+                  }
+                  ?>
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="reporteIncapacidad.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Incapacidad</p>
-                  </a>
-                </li>
+                <!-- <li class="nav-item">
+                <a href="reporteIncapacidad.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Incapacidad</p>
+                </a>
+              </li> -->
                 <li class="nav-item">
                   <a href="reporteHorasExtras.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -183,6 +195,28 @@ include "../include/head.php";
                   </a>
                 </li>
               </ul>
+            </li>
+            <?php if ($my_user_type == "admin") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-plus-circle"></i>
+                  <p>
+                    Crear
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="crearEmpleado.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Empleado</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -224,11 +258,11 @@ include "../include/head.php";
                   </div>
                   <h3 class="profile-username text-center"><?php echo $nombres . ' ' . $apellidos ?></h3>
                   <?php
-                  if ($usertype != "admin") { ?>
+                  if ($my_user_type == "user") { ?>
                     <p class="text-muted text-center"><?php echo $cargo . ' <br> ' . $nombreRestaurante ?> sede <?php echo $nombreSede ?></p>
                   <?php
-                  } elseif ($usertype != "user") { ?>
-                    <p class="text-muted text-center"><?php echo $cargo ?></p>
+                  } elseif ($my_user_type == "admin") { ?>
+                    <p class="text-muted text-center"><?php echo $cargo . ' <br> ' . $nombreRestaurante ?></p>
                   <?php
                   }
                   ?>
@@ -275,42 +309,10 @@ include "../include/head.php";
               </div>
               <!-- /.card -->
 
-              <!-- About Me Box -->
-              <!-- <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Sobre mí</h3>
-              </div>
-              <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Estudios</strong>
-
-                <p class="text-muted"><?php echo $estudios ?></p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
-
-                <p class="text-muted"><?php echo $ubicacion ?></p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Habilidades</strong>
-
-                <p class="text-muted">
-                <span class="tag tag-danger"><?php echo $habilidades ?></span>
-                </p>
-
-                <hr>
-
-                <strong><i class="far fa-file-alt mr-1"></i> Hoja de vida</strong>
-
-                <p class="text-muted"><a href="">holadevida.pdf</a></p>
-              </div>
-            </div> -->
-
             </div>
             <!-- /.col -->
             <div class="col-md-9">
-              <div class="card card-primaryy">
+              <div class="card">
                 <div class="card-header p-2">
                   <!-- <h3 class="card-title">Datos personales</h3> -->
                   <ul class="nav nav-pills">
@@ -354,9 +356,9 @@ include "../include/head.php";
                         <br>
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">Password:</label>
-                          <input type="password" id="password1" class="form-control" value="<?php echo $password ?>">
+                          <input type="password" id="password" class="form-control" value="<?php echo $password ?>">
                           <div class="input-group-append">
-                            <button id="show_password1" class="btn btn-primary" type="button" onclick="mostrarPassword1()"> <span class="fa fa-eye-slash icon"></span></button>
+                            <button class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span></button>
                           </div>
                         </div>
                         <br>
@@ -396,7 +398,9 @@ include "../include/head.php";
 
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">I.Contrato:</label>
-                          <input type="text" class="form-control" value="<?php echo $inicioContrato ?>" disabled>
+                          <input type="text" class="form-control" value="<?php if ($my_user_type == "user") {
+                                                                            echo $inicioContrato ?> <?php } elseif ($my_user_type == "admin") {
+                                                                                                  } ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-user"></span>
@@ -406,7 +410,9 @@ include "../include/head.php";
 
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">T.Contrato:</label>
-                          <input type="email" class="form-control" value="<?php echo $tipoContrato ?>" disabled>
+                          <input type="text" class="form-control" value="<?php if ($my_user_type == "user") {
+                                                                            echo $tipoContrato ?> <?php } elseif ($my_user_type == "admin") {
+                                                                                                } ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-envelope"></span>
@@ -416,7 +422,9 @@ include "../include/head.php";
 
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">Sueldo:</label>
-                          <input type="email" class="form-control" value="<?php echo $sueldo ?>" disabled>
+                          <input type="text" class="form-control" value="<?php if ($my_user_type == "user") {
+                                                                            echo $sueldo ?> <?php } elseif ($my_user_type == "admin") {
+                                                                                          } ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-envelope"></span>
@@ -426,7 +434,9 @@ include "../include/head.php";
 
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">Pensión:</label>
-                          <input type="email" class="form-control" value="<?php echo $pension ?>" disabled>
+                          <input type="text" class="form-control" value="<?php if ($my_user_type == "user") {
+                                                                            echo $pension ?> <?php } elseif ($my_user_type == "admin") {
+                                                                                            } ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-envelope"></span>
@@ -436,7 +446,9 @@ include "../include/head.php";
 
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">Salud:</label>
-                          <input type="email" class="form-control" value="<?php echo $salud ?>" disabled>
+                          <input type="text" class="form-control" value="<?php if ($my_user_type == "user") {
+                                                                            echo $salud ?> <?php } elseif ($my_user_type == "admin") {
+                                                                                          } ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-envelope"></span>
@@ -446,7 +458,9 @@ include "../include/head.php";
 
                         <div class="input-group mb-3">
                           <label class="col-sm-1 col-form-label">ARL:</label>
-                          <input type="email" class="form-control" value="<?php echo $arl ?>" disabled>
+                          <input type="text" class="form-control" value="<?php if ($my_user_type == "user") {
+                                                                            echo $arl ?> <?php } elseif ($my_user_type == "admin") {
+                                                                                        } ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-envelope"></span>
@@ -541,8 +555,8 @@ include "../include/head.php";
     })
   </script>
   <script type="text/javascript">
-    function mostrarPassword1() {
-      var cambio1 = document.getElementById("password1");
+    function mostrarPassword() {
+      var cambio1 = document.getElementById("password");
       if (cambio1.type == "password") {
         cambio1.type = "text";
         $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');

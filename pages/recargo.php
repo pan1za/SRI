@@ -164,12 +164,12 @@ include "../include/head.php";
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="reporteIncapacidad.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Incapacidad</p>
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a href="reporteHorasExtras.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -183,6 +183,28 @@ include "../include/head.php";
                   </a>
                 </li>
               </ul>
+            </li>
+            <?php if ($my_user_type == "admin") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-plus-circle"></i>
+                  <p>
+                    Crear
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="crearEmpleado.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Empleado</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
