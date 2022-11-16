@@ -1,6 +1,10 @@
 <?php
-
+//include "config/conexion.php";
 include "../include/head.php";
+
+// if($usertype != "user"){
+//     header("location: homeadmin.php");
+// }
 
 ?>
 
@@ -8,10 +12,30 @@ include "../include/head.php";
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistemas de Reportes Innova</title>
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -30,11 +54,43 @@ include "../include/head.php";
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="../home" class="nav-link">Inicio</a>
+          <a href="../home.php" class="nav-link">Inicio</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="../pages/examples/contact-us.html" class="nav-link">Contáctenos</a>
         </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+
+        <!-- Notifications Dropdown Menu -->
+        <!-- <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li> -->
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -53,6 +109,7 @@ include "../include/head.php";
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             <img src="../dist/img/perfiles/<?php echo $foto ?>" class="img-circle elevation-2" alt="User Image">
+            <!-- <img src="../dist/img/user.png" class="img-circle elevation-2" alt="User Image"> -->
           </div>
           <div class="info">
             <a href="../pages/perfil" class="d-block"><?php echo $nombres . ' ' . $apellidos ?></a>
@@ -62,6 +119,8 @@ include "../include/head.php";
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
             <li class="nav-item">
               <a href="" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
@@ -135,6 +194,12 @@ include "../include/head.php";
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                <!-- <li class="nav-item">
+                <a href="reporteIncapacidad.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Incapacidad</p>
+                </a>
+              </li> -->
                 <li class="nav-item">
                   <a href="reporteHorasExtras" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -147,35 +212,8 @@ include "../include/head.php";
                     <p>Recargo</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="reporteIncapacidad" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Incapacidad</p>
-                  </a>
-                </li>
               </ul>
             </li>
-            <?php if ($my_user_type == "admin") { ?>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-list"></i>
-                  <p>
-                    Listar
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="reporteEmpleados" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Empleados</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            <?php
-            }
-            ?>
             <?php if ($my_user_type == "admin") { ?>
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -204,58 +242,58 @@ include "../include/head.php";
       <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Bienvenido <?php echo $nombres . ' ' . $apellidos ?></h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item active">Bienvenida</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At provident deleniti natus non! Optio, itaque veniam! Adipisci, minus saepe, iusto accusantium nulla laborum at eum ipsum numquam sequi iste mollitia?</p>
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Versión</b> 1.0.0
     </div>
-    <!-- /.content-wrapper -->
+    <strong>Sistema de Reportes de Innova - <a target="blank" href="http://innovagestion.com.co/">INNOVA Gestión &copy </a></strong>
+  </footer>
 
-    <!-- Footer -->
-    <?php
-    include "../include/footer.php";
-    ?>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
-
-
-  <?php
-  include "../include/scripts.php";
-  ?>
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
+  <!-- Bootstrap 4 -->
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ChartJS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="../plugins/sparklines/sparkline.js"></script>
+  <!-- JQVMap -->
+  <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
+  <!-- daterangepicker -->
+  <script src="../plugins/moment/moment.min.js"></script>
+  <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Summernote -->
+  <script src="../plugins/summernote/summernote-bs4.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../dist/js/adminlte.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="dist/js/demo.js"></script> -->
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
 </body>
 
 </html>

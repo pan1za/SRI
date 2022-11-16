@@ -8,6 +8,13 @@
     $password = $_POST["password"];
     $username = strstr($email, '@', true);
     $idSede = $_POST["idSede"];
+
+    $query = "INSERT INTO `usuario`(`nombres`, `apellidos`, `email`, `password`, `username`, `idSede`) 
+            VALUES ('$nombres', '$apellidos', '$email', '$password', '$username', '$idSede')";
+    
+    $result = mysqli_query($conn, $query);
+
+
     $cargo = $_POST["cargo"];
     $inicioContrato	= $_POST["inicioContrato"];
     $tipoContrato = $_POST["tipoContrato"];
@@ -15,15 +22,14 @@
     $pension = $_POST["pension"];
     $salud = $_POST["salud"];
     $arl = $_POST["arl"];
-    //$idUsuario = $_SESSION['user_id'];
+    $consulta = "SELECT idUsuario FROM usuario WHERE username = '$username'";
+    $resultado = mysqli_query($conn, $consulta);
+    $fila = mysqli_fetch_row($resultado);
+    $idUsuarioCreado = $fila[0];
 
-    $query = "INSERT INTO `usuario`(`nombres`, `apellidos`, `email`, `password`, `username`, `idSede`) 
-            VALUES ('$nombres', '$apellidos', '$email', '$password', '$username', '$idSede')";
-    
     $query2 = "INSERT INTO `info_usuario`(`cargo`, `inicioContrato`, `tipoContrato`, `sueldo`, `pension`, `salud`, `arl`, `idUsuario`) 
-            VALUES ('$cargo', '$inicioContrato', '$tipoContrato', '$sueldo', '$pension', '$salud', '$arl', '$idUsuario')";
+            VALUES ('$cargo', '$inicioContrato', '$tipoContrato', '$sueldo', '$pension', '$salud', '$arl', '$idUsuarioCreado')";
 
-    $result = mysqli_query($conn, $query);
     $result2 = mysqli_query($conn, $query2);
 
     if ($result && $result2) {

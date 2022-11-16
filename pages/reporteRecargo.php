@@ -1,10 +1,6 @@
 <?php
-//include "config/conexion.php";
-include "../include/head.php";
 
-// if($usertype != "user"){
-//     header("location: homeadmin.php");
-// }
+include "../include/head.php";
 
 ?>
 
@@ -15,19 +11,6 @@ include "../include/head.php";
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sistemas de Reportes | Reportes</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <!-- <script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script> -->
-  <!-- <script type="text/javascript" src="../plugins/moment/moment.min.js"></script> -->
-  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -40,43 +23,11 @@ include "../include/head.php";
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="home.php" class="nav-link">Inicio</a>
+          <a href="home" class="nav-link">Inicio</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="../pages/examples/contact-us.html" class="nav-link">Contáctenos</a>
         </li>
-      </ul>
-
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-
-        <!-- Notifications Dropdown Menu -->
-        <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li> -->
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -84,7 +35,7 @@ include "../include/head.php";
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="home.php" class="brand-link">
+      <a href="home" class="brand-link">
         <img src="../dist/img/logo.png" alt="SRI Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Sistema de Reportes</span>
       </a>
@@ -97,15 +48,13 @@ include "../include/head.php";
             <img src="../dist/img/perfiles/<?php echo $foto ?>" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="../pages/perfil.php" class="d-block"><?php echo $nombres . ' ' . $apellidos ?></a>
+            <a href="../pages/perfil" class="d-block"><?php echo $nombres . ' ' . $apellidos ?></a>
           </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
@@ -116,13 +65,13 @@ include "../include/head.php";
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="perfil.php" class="nav-link">
+                  <a href="perfil" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Perfil</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../action/cerrarSesion.php" class="nav-link">
+                  <a href="../action/cerrarSesion" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Cerrar Sesión</p>
                   </a>
@@ -140,19 +89,19 @@ include "../include/head.php";
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="incapacidad.php" class="nav-link">
+                    <a href="incapacidad" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Incapacidad</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="horasExtras.php" class="nav-link">
+                    <a href="horasExtras" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Horas extras</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="recargo.php" class="nav-link">
+                    <a href="recargo" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Recargo</p>
                     </a>
@@ -179,26 +128,47 @@ include "../include/head.php";
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <!-- <li class="nav-item">
-                <a href="reporteIncapacidad.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Incapacidad</p>
-                </a>
-              </li> -->
                 <li class="nav-item">
-                  <a href="reporteHorasExtras.php" class="nav-link">
+                  <a href="reporteHorasExtras" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Horas extras</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="reporteRecargo.php" class="nav-link active">
+                  <a href="reporteRecargo" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recargo</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="reporteIncapacidad" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Incapacidad</p>
+                  </a>
+                </li>
               </ul>
             </li>
+            <?php if ($my_user_type == "admin") { ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>
+                    Listar
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="reporteEmpleados" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Empleados</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
             <?php if ($my_user_type == "admin") { ?>
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -210,7 +180,7 @@ include "../include/head.php";
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="crearEmpleado.php" class="nav-link">
+                    <a href="crearEmpleado" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Empleado</p>
                     </a>
@@ -304,7 +274,6 @@ include "../include/head.php";
                                 INNER JOIN usuario u ON u.idUsuario = r.idUsuario") as $row) {
                   ?>
                       <tr>
-                        <td><?php echo $row['nombres'] . ' ' . $row['apellidos'] ?></td>
                         <td><?php echo $row['tipoRecargo'] ?></td>
                         <td><?php echo $row['jornada'] ?></td>
                         <td><?php echo $row['fecha'] ?></td>
@@ -358,12 +327,10 @@ include "../include/head.php";
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-      <div class="float-right d-none d-sm-block">
-        <b>Versión</b> 1.0.0
-      </div>
-      <strong>Sistema de Reportes de Innova - <a target="blank" href="http://innovagestion.com.co/">INNOVA Gestión &copy </a></strong>
-    </footer>
+    <!-- Footer -->
+    <?php
+    include "../include/footer.php";
+    ?>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -373,42 +340,12 @@ include "../include/head.php";
   </div>
   <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="../plugins/jquery/jquery.min.js"></script>
-  <!-- Moment -->
-  <script type="text/javascript" src="../plugins/moment/moment.min.js"></script>
-  <!-- DataTable -->
-  <script src="../plugins/datatables/jquery.dataTables.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- bs-custom-file-input -->
-  <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-  <!-- date-range-picker -->
-  <script src="../plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <!-- <script src="../../dist/js/demo.js"></script> -->
+  <!-- Scripts -->
+  <?php
+  include "../include/scripts.php";
+  ?>
+
   <script>
-    $(function() {
-      //Input file
-      bsCustomFileInput.init()
-
-      //Date picker
-      $('#fechapicker').datetimepicker({
-        format: 'L'
-      })
-
-      //Timepicker
-      $('#timepicker1').datetimepicker({
-        format: 'LT'
-      })
-      $('#timepicker2').datetimepicker({
-        format: 'LT'
-      })
-    });
-
-
     function mostrar(dato) {
       if (dato == "dia") {
         document.getElementById("tablaRecargosDia").style.display = "block";
@@ -426,7 +363,6 @@ include "../include/head.php";
       $('input[name="rangoFecha"]').daterangepicker({
         opens: 'left'
       }, function(start, end, label) {
-        //console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         $(".tituloRango > span").text(' desde ' + start.format('D MMMM YYYY') + ' hasta ' + end.format('D MMMM YYYY'));
         var fechaInicio = start.format('YYYY-MM-DD');
         var fechaFin = end.format('YYYY-MM-DD');
@@ -443,22 +379,6 @@ include "../include/head.php";
     $(document).ready(function() {
       $('#tabla').DataTable();
     });
-
-    // $( document ).ready(function(){
-
-    //     $("input[type='radio']").change(function(){
-
-    //     $("#tablaHorasExtrasDia").hide();
-    //     $("#tablaHorasExtrasSemana").hide();
-    //     $("#tablaHorasExtrasMes").hide();
-
-    //     var horasExtras = $("input[name='grupoHorasExtras']:checked").val();
-
-    //     if(horasExtras == "dia")
-    //         $("#dia").show()
-
-    //     });
-    // });
   </script>
 </body>
 
