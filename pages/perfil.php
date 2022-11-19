@@ -16,201 +16,15 @@ include "../include/head.php";
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="home.php" class="nav-link">Inicio</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="../pages/examples/contact-us.html" class="nav-link">Contáctenos</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="home" class="brand-link">
-        <img src="../dist/img/logo.png" alt="SRI Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Sistema de Reportes</span>
-      </a>
+    <?php
+    $menuOpenMiCuenta = "menu-open";
+    $activePerfil = "active";
+    include "../include/navbar.php";
+    include "../include/aside.php";
+    ?>
 
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="../dist/img/perfiles/<?php echo $foto ?>" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="../pages/perfil" class="d-block"><?php echo $nombres . ' ' . $apellidos ?></a>
-          </div>
-        </div>
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link <?php
-                                          if (isset($_GET['idUsuario'])) {
-                                          } else { ?>
-                                              active
-                                            <?php
-                                          }
-                                            ?>">
-                <i class="nav-icon fa fa-user"></i>
-                <p>
-                  Mi cuenta
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="perfil" class="nav-link <?php
-                                                    if (isset($_GET['idUsuario'])) {
-                                                    } else { ?>
-                                                      active
-                                                    <?php
-                                                    }
-                                                    ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Perfil</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../action/cerrarSesion" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Cerrar Sesión</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <?php if ($my_user_type == "user") { ?>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-edit"></i>
-                  <p>
-                    Reportar
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="incapacidad" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Incapacidad</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="horasExtras" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Horas extras</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="recargo" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Recargo</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            <?php
-            }
-            ?>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  <?php
-                  if ($my_user_type == "user") { ?>
-                    Mis reportes
-                  <?php
-                  } elseif ($my_user_type == "admin") { ?>
-                    Reportes
-                  <?php
-                  }
-                  ?>
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="reporteHorasExtras" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Horas extras</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="reporteRecargo" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Recargo</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="reporteIncapacidad" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Incapacidad</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <?php if ($my_user_type == "admin") { ?>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-list"></i>
-                  <p>
-                    Listar
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="reporteEmpleados" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Empleados</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            <?php
-            }
-            ?>
-            <?php if ($my_user_type == "admin") { ?>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-plus-circle"></i>
-                  <p>
-                    Crear
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="crearEmpleado" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Empleado</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            <?php
-            }
-            ?>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
-
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
@@ -224,7 +38,7 @@ include "../include/head.php";
               </ol>
             </div>
           </div>
-        </div><!-- /.container-fluid -->
+        </div>
       </section>
 
       <?php
@@ -262,7 +76,6 @@ include "../include/head.php";
       }
       ?>
 
-      <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
           <div class="row">
@@ -298,15 +111,13 @@ include "../include/head.php";
                   <?php
                   }
                   ?>
-                </div><!-- /.card-body -->
-              </div><!-- /.card -->
+                </div>
+              </div>
 
-              <!-- Cambiar foto de perfil -->
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">Cambiar foto de perfil</h3>
                 </div>
-                <!-- /.card-header -->
                 <div class="card-body">
                   <form method="POST" id="formFoto" enctype="multipart/form-data">
                     <div>
@@ -345,12 +156,9 @@ include "../include/head.php";
                   </form>
                   <div id="resultFoto"></div>
                 </div>
-                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
 
             </div>
-            <!-- /.col -->
             <div class="col-md-9">
               <div class="card">
                 <div class="card-header p-2">
@@ -358,13 +166,13 @@ include "../include/head.php";
                     <li class="nav-item"><a class="nav-link active" href="#datosPersonales" data-toggle="tab">Datos Personales</a></li>
                     <li class="nav-item"><a class="nav-link" href="#datosLaborales" data-toggle="tab">Datos Laborales</a></li>
                   </ul>
-                </div><!-- /.card-header -->
+                </div>
                 <div class="card-body">
                   <div class="tab-content">
                     <div class="active tab-pane" id="datosPersonales">
                       <div class="card-body">
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Nombres:</label>
+                          <label class="col-form-label">Nombres: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php echo $nombres ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
@@ -374,7 +182,7 @@ include "../include/head.php";
                         </div>
                         <br>
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Apellidos:</label>
+                          <label class="col-form-label">Apellidos: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php echo $apellidos ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
@@ -384,7 +192,7 @@ include "../include/head.php";
                         </div>
                         <br>
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Correo:</label>
+                          <label class="col-form-label">Correo: &nbsp;</label>
                           <input type="email" class="form-control" value="<?php echo $email ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
@@ -394,7 +202,7 @@ include "../include/head.php";
                         </div>
                         <br>
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Password:</label>
+                          <label class="col-form-label">Password: &nbsp;</label>
                           <?php
                           if (isset($_GET['idUsuario'])) {
                             $idUser = $_GET['idUsuario'];
@@ -416,7 +224,7 @@ include "../include/head.php";
                         </div>
                         <br>
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Username:</label>
+                          <label class="col-form-label">Username: &nbsp;</label>
                           <?php
                           if (isset($_GET['idUsuario'])) {
                             $idUser = $_GET['idUsuario'];
@@ -440,13 +248,13 @@ include "../include/head.php";
                           }
                           ?>
                         </div>
-                      </div><!-- /.card -->
-                    </div><!-- datos personales -->
+                      </div>
+                    </div>
 
                     <div class="tab-pane" id="datosLaborales">
                       <div class="card-body">
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Cargo:</label>
+                          <label class="col-form-label">Cargo: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php echo $cargo ?>" disabled>
                           <div class="input-group-append">
                             <div class="input-group-text">
@@ -456,7 +264,7 @@ include "../include/head.php";
                         </div>
 
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">I.Contrato:</label>
+                          <label class="col-form-label">Inicio de contrato: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php
                                                                           if (isset($_GET['idUsuario'])) {
                                                                             echo $inicioContrato;
@@ -476,7 +284,7 @@ include "../include/head.php";
                         </div>
 
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">T.Contrato:</label>
+                          <label class="col-form-label">Tipo de contrato: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php
                                                                           if (isset($_GET['idUsuario'])) {
                                                                             echo $tipoContrato;
@@ -496,7 +304,7 @@ include "../include/head.php";
                         </div>
 
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Sueldo:</label>
+                          <label class="col-form-label">Sueldo: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php
                                                                           if (isset($_GET['idUsuario'])) {
                                                                             echo $sueldo;
@@ -516,7 +324,7 @@ include "../include/head.php";
                         </div>
 
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Pensión:</label>
+                          <label class="col-form-label">Pensión: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php
                                                                           if (isset($_GET['idUsuario'])) {
                                                                             echo $pension;
@@ -536,7 +344,7 @@ include "../include/head.php";
                         </div>
 
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">Salud:</label>
+                          <label class="col-form-label">Salud: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php
                                                                           if (isset($_GET['idUsuario'])) {
                                                                             echo $salud;
@@ -556,7 +364,7 @@ include "../include/head.php";
                         </div>
 
                         <div class="input-group mb-3">
-                          <label class="col-sm-1 col-form-label">ARL:</label>
+                          <label class="col-form-label">ARL: &nbsp;</label>
                           <input type="text" class="form-control" value="<?php
                                                                           if (isset($_GET['idUsuario'])) {
                                                                             echo $arl;
@@ -574,16 +382,16 @@ include "../include/head.php";
                             </div>
                           </div>
                         </div>
-                      </div><!-- /.card -->
-                    </div> <!-- datos laborales -->
-                  </div><!-- /.tab-content -->
-                </div><!-- /.card-body -->
-              </div><!-- /.card primary-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">Hoja de vida</h3>
-                </div><!-- /.card-header -->
+                </div>
                 <div class="card-body">
                   <div class="tab-content">
                     <div class="card-body">
@@ -598,10 +406,16 @@ include "../include/head.php";
                                 <label class="custom-file-label">Actualizar hoja de vida</label>
                               <?php
                               }
-                            } else { ?>
-                              <input type="file" class="custom-file-input" id="hojaDeVida" required>
-                              <label class="custom-file-label">Actualizar hoja de vida</label>
+                            } else {
+                              if ($my_user_type == "user") { ?>
+                                <input type="file" class="custom-file-input" id="hojaDeVida" required>
+                                <label class="custom-file-label">Actualizar hoja de vida</label>
+                              <?php
+                              } else { ?>
+                                <input type="file" class="custom-file-input" id="hojaDeVida" disabled>
+                                <label class="custom-file-label">Actualizar hoja de vida</label>
                             <?php
+                              }
                             }
                             ?>
                           </div>
@@ -614,52 +428,62 @@ include "../include/head.php";
                               <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida" disabled>Guardar cambios</button>
                             <?php
                             }
-                          } else { ?>
-                            <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
+                          } else {
+                            if ($my_user_type == "user") { ?>
+                              <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida">Guardar cambios</button>
+                            <?php
+                            } else { ?>
+                              <button type="submit" class="btn btn-primary ml-auto" id="enviarHojaDeVida" disabled>Guardar cambios</button>
                           <?php
+                            }
                           }
                           ?>
                         </div>
                       </form>
                       <div class="input-group mt-3">
-                        <a href="../action/descargarHV?idUsuario=<?php echo $idUsuario ?>" class="btn btn-success ml-auto">Descargar hoja de vida</a>
+                        <?php
+                        if (isset($_GET['idUsuario'])) {
+                          $idUser = $_GET['idUsuario'];
+                          if ($my_user_id != "$idUser") { ?>
+                            <a href="../action/descargarHV?idUsuario=<?php echo $idUser ?>" class="btn btn-success ml-auto">Descargar hoja de vida</a>
+                          <?php
+                          }
+                        } else {
+                          if ($my_user_type == "user") { ?>
+                            <a href="../action/descargarHV?idUsuario=<?php echo $idUsuario ?>" class="btn btn-success ml-auto">Descargar hoja de vida</a>
+                          <?php
+                          } else { ?>
+
+                        <?php
+                          }
+                        }
+                        ?>
                       </div>
                       <div class="mt-3 col-5 ml-auto" id="resultHojaDeVida"></div>
-                    </div><!-- /.card -->
-                  </div><!-- /.tab-content -->
-                </div><!-- /.card-body -->
-              </div><!-- /.card primary secundary-->
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
       </section>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Footer -->
     <?php
     include "../include/footer.php";
     ?>
 
-    <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
   </div>
-  <!-- ./wrapper -->
 
-
-  <!-- Scripts -->
   <?php
   include "../include/scripts.php";
   ?>
+
   <script>
     $(function() {
-      //Input file
       bsCustomFileInput.init()
     })
   </script>

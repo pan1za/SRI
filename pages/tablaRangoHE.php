@@ -93,7 +93,6 @@ if (isset($_GET["inicio"])) {
 }
 ?>
 
-<!-- Scripts -->
 <?php
 include "../include/scripts.php";
 ?>

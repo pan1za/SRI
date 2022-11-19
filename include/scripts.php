@@ -26,6 +26,6 @@
   <!-- bs-custom-file-input -->
   <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
   <!-- DataTable -->
-  <script src="../plugins/datatables/jquery.dataTables.js"></script>
+  <script src="../plugins/datatables2/jquery.dataTables.js"></script>
   <!-- AdminLTE App -->
   <script src="../dist/js/adminlte.js"></script>

@@ -12,24 +12,20 @@
         $row=mysqli_fetch_array($result);
 
         if(!$row){
-            echo "<script>alert(\"Usuario o contraseña incorrecta\"); window.location=\"../login.php\"</script>";
+            echo "<script>alert(\"Usuario o contraseña incorrecta\"); window.location=\"../login\"</script>";
             exit;
         }elseif($row["usertype"]=="user"){
             $_SESSION["user_id"] = $row["idUsuario"];
             $_SESSION["user_type"] = $row["usertype"];
             $_SESSION["id_sede"] = $row["idSede"];
             session_start();
-
-            // if(isset($_SESSION['email'])){
-            //     session_unset();
-            // }
-            header("location:../index.php");
+            header("location:../index");
             die(); 
         }elseif ($row["usertype"]=="admin"){
             $_SESSION["user_id"]=$row["idUsuario"];
             $_SESSION["user_type"] = $row["usertype"];
             session_start();
-            header("location:../index.php");
+            header("location:../index");
             die();
         }
     }

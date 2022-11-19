@@ -28,10 +28,6 @@
         {
             $errors[] = "Debe ser un archivo PDF"; 
         }
-        // else if ($size > 1024*1024)
-        // {
-        //   echo "Error, el tamaño máximo permitido es un 1MB";
-        // }
         else
         {
             $src = $carpeta.$nombre;
@@ -75,27 +71,5 @@
                 <?php
         }
     }
-
-?>
-
-
-<?php
-
-    /*include "../config/conexion.php";
-
-    if (isset($_FILES['file']) != ""){
-        
-        
-
-        $nombre = $_FILES["file"]["name"];
-        
-        
-        
-        $carpeta = "../dist/docs/";
-        
-        if(move_uploaded_file($_FILES["file"]["tmp_name"],$carpeta.$nombre)){
-            echo "Archivo subido con exito";
-        }
-    }*/
 
 ?>
